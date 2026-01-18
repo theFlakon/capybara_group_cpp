@@ -1,6 +1,7 @@
-cmake_minimum_required(VERSION 3.5)
+cmake_minimum_required(VERSION 3.23)
 
-project(WorkshopX CXX)
+project(MathFunc)
+
 
 if (NOT CMAKE_BUILD_TYPE)
     set(CMAKE_BUILD_TYPE Debug)
@@ -11,31 +12,27 @@ set(CMAKE_CXX_STANDARD 17)
 # the following options prevent compiler-optimization issues that are unwanted in an edu process
 set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -O0 -Werror=return-type")
 set(CMAKE_C_FLAGS_DEBUG "${CMAKE_C_FLAGS_DEBUG} -O0")
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON) # Only for IK. If you use VScode just skip this
 
-# --- 1. Fetch Catch2 Dependency ---
-include(FetchContent)
-FetchContent_Declare(
-    Catch2
-    GIT_REPOSITORY https://github.com/catchorg/Catch2.git
-    GIT_TAG v3.4.0 # Or latest version
+# If you wanna build the projects with the tests use the command below
+# cmake -B build -DBUILD_TESTS=ON
+option(BUILD_TESTS "Build tests" OFF)
+
+add_library(pow_lib
+    src/pow_func.cpp
 )
-FetchContent_MakeAvailable(Catch2)
 
-# --- 2. Create a Library for shared logic ---
-# Instead of compiling calculator.cpp twice, we make it a library
-add_library(MathLib src/calculator.cpp)
-target_include_directories(MathLib PUBLIC include)
+target_include_directories(pow_lib
+    PUBLIC include
+)
 
-# --- 3. Main Application ---
-add_executable(MyApp src/main.cpp)
-target_link_libraries(MyApp PRIVATE MathLib)
+add_executable(program app/main.cpp)
+target_link_libraries(program PRIVATE pow_lib)
 
-# --- 4. Testing Setup ---
-enable_testing()
+if (BUILD_TESTS)
+    find_package(Catch2 3 REQUIRED)
 
-add_executable(unit_tests tests/test_calculator.cpp)
+    add_executable(tests tests/test.cpp)
 
-# Link the test to our logic AND the Catch2 library
-target_link_libraries(unit_tests PRIVATE MathLib Catch2::Catch2WithMain)
-# Register the test with CTest
-add_test(NAME MyCalculatorTests COMMAND unit_tests)
+    target_link_libraries(tests PRIVATE pow_lib Catch2::Catch2WithMain)
+endif()
