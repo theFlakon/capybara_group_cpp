@@ -13,36 +13,35 @@ set(CMAKE_CXX_STANDARD 17)
 # the following options prevent compiler-optimization issues that are unwanted in an edu process, we are disabling it
 # CMAKE_C_FLAGS_DEBUG - variable, describing compiler`s flags for Debug (ex: -g -O0 - Wall)
 # we choose -O0 (off compiler`s options) and -Werror=return-type (if there`s NO "return" in func - ERROR ha-ha-ha)
-set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -O0 -Werror=return-type")
+set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -O0 -Werror=return-type")   # for c++
 
-# CMAKE_CXX_FLAGS_DEBUG - variable; we add -O0 
-set(CMAKE_C_FLAGS_DEBUG "${CMAKE_C_FLAGS_DEBUG} -O0")
+set(CMAKE_C_FLAGS_DEBUG "${CMAKE_C_FLAGS_DEBUG} -O0")                           # for c
 
-# CMAKE_EXPORT_COMPILE_COMMANDS - variable; is responsible only for 1 thing - create or not create file compile_commands.json
-set(CMAKE_EXPORT_COMPILE_COMMANDS ON) # Only for IK. If you use VScode just skip this
+# CMAKE_EXPORT_COMPILE_COMMANDS - variable; it is responsible only for 1 thing - create or not create file compile_commands.json
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON) # Only for JetBrains. If you use VScode just skip this
 
 # If you wanna build the projects with the tests use the command below
 # cmake -B build -DBUILD_TESTS=ON
-option(BUILD_TESTS "Build tests" OFF)
+option(BUILD_TESTS "Build tests" OFF) 
 
 # just creating library
 add_library(pow_lib
     src/pow_func.cpp
 )
 
-# we tell compiler "headlines lay in folder include"
+# we tell compiler "headlines lie in folder include"
 target_include_directories(pow_lib
-    PUBLIC include
+    PUBLIC include      # link lib and headline, PUBLIC because we will need this header later (42 line)
 )
 
 # сompile the program named "program" from the file app/main.cpp
 add_executable(program app/main.cpp)
 
 # connect the pow_lib library to the program, linkovka
-target_link_libraries(program PRIVATE pow_lib)
+target_link_libraries(program PRIVATE pow_lib)  # PRIVATE because we don`t want access to pow_lib from program
 
 if (BUILD_TESTS)
-    find_package(Catch2 3 REQUIRED)      # without Catch2 this include file will not be found, the test won`t compile
+    find_package(Catch2 3 REQUIRED)      # Include Catch2 (v3). If file will not be found, the test won`t compile
 
     add_executable(tests tests/test.cpp) # compile the "tests" program from the file tests/test.cpp
     
