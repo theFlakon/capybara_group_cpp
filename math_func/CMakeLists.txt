@@ -24,6 +24,13 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON) # Only for JetBrains. If you use VScode ju
 # cmake -B build -DBUILD_TESTS=ON
 option(BUILD_TESTS "Build tests" OFF) 
 
+# Set output directories relative to the build directory
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
+
+# If you ever build shared libraries:
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
+
 # just creating library
 add_library(pow_lib
     src/pow_func.cpp
@@ -41,10 +48,22 @@ add_executable(program app/main.cpp)
 target_link_libraries(program PRIVATE pow_lib)  # PRIVATE because we don`t want access to pow_lib from program
 
 if (BUILD_TESTS)
-    find_package(Catch2 3 REQUIRED)      # Include Catch2 (v3). If file will not be found, the test won`t compile
+    # --- 4. Testing Setup ---
+    include(FetchContent)
+    FetchContent_Declare(
+        Catch2
+        GIT_REPOSITORY https://github.com/catchorg/Catch2.git
+        GIT_TAG v3.4.0
+    )
+    FetchContent_MakeAvailable(Catch2)
 
-    add_executable(tests tests/test.cpp) # compile the "tests" program from the file tests/test.cpp
+    enable_testing()
     
+    # сompile the program named "tests" from the file tests/test.cpp
+    add_executable(tests tests/test.cpp)
+
     # connect the pow_lib library and Catch2 to the tests program
     target_link_libraries(tests PRIVATE pow_lib Catch2::Catch2WithMain)
+
+    add_test(NAME TestsPowFunction COMMAND tests)
 endif()
