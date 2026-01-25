@@ -24,11 +24,11 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON) # Only for JetBrains. If you use VScode ju
 # cmake -B build -DBUILD_TESTS=ON
 option(BUILD_TESTS "Build tests" OFF) 
 
-# Set output directories relative to the build directory
+# where to put bin files (build/bin/program)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
+# where to put static libraries (build/lib/libpow_lib.a)
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
-
-# If you ever build shared libraries:
+# where to put dynamic libraries (build/lib/libpow_lib.so) 
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 
 # just creating library
@@ -38,7 +38,7 @@ add_library(pow_lib
 
 # we tell compiler "headlines lie in folder include"
 target_include_directories(pow_lib
-    PUBLIC include      # link lib and headline, PUBLIC because we will need this header later (42 line)
+    PUBLIC include      # link lib and headline, PUBLIC because we will need this header later (48 line)
 )
 
 # сompile the program named "program" from the file app/main.cpp
@@ -48,16 +48,15 @@ add_executable(program app/main.cpp)
 target_link_libraries(program PRIVATE pow_lib)  # PRIVATE because we don`t want access to pow_lib from program
 
 if (BUILD_TESTS)
-    # --- 4. Testing Setup ---
     include(FetchContent)
-    FetchContent_Declare(
-        Catch2
-        GIT_REPOSITORY https://github.com/catchorg/Catch2.git
-        GIT_TAG v3.4.0
+    FetchContent_Declare(   
+        Catch2                                                # declare dependency catch2 from        
+        GIT_REPOSITORY https://github.com/catchorg/Catch2.git # where to download
+        GIT_TAG v3.4.0                                        # version
     )
-    FetchContent_MakeAvailable(Catch2)
+    FetchContent_MakeAvailable(Catch2)                        # download catch2 into build, add as a part of assembley, create targets type Catch2::Catch2WithMain
 
-    enable_testing()
+    enable_testing()                                          # enables support for tests in CMake/CTest for add_test (67) could work
     
     # сompile the program named "tests" from the file tests/test.cpp
     add_executable(tests tests/test.cpp)
@@ -65,5 +64,6 @@ if (BUILD_TESTS)
     # connect the pow_lib library and Catch2 to the tests program
     target_link_libraries(tests PRIVATE pow_lib Catch2::Catch2WithMain)
 
-    add_test(NAME TestsPowFunction COMMAND tests)
+    # register and run tests executable with CTest
+    add_test(NAME TestsPowFunction COMMAND $<TARGET_FILE:tests>) 
 endif()
