@@ -1,0 +1,28 @@
+#include <cctype>
+#include <string>
+
+std::string chesarEncrypt(std::string input, int shift);
+
+std::string chesarEncrypt(std::string input, int shift) {
+    std::string output = "";
+    int alphabetSize = ('z'-'a')+1;
+    shift %= alphabetSize;
+    for(int i = 0; i < input.size(); i++) {
+        if(!isalpha(input[i])) continue;
+        char newChar = input[i]+shift;
+        if(!isalpha(newChar)) {
+            int newShift = 0;
+            if(input[i] <= 'Z') {
+                newShift = shift - (alphabetSize - (input[i]-'A'));
+                newChar = 'A'+newShift;
+            }
+            else {
+                newShift = shift - (alphabetSize - (input[i]-'a'));
+                newChar = 'a'+newShift;
+            }
+            
+        }
+        output += newChar;
+    }
+    return output;
+}
