@@ -51,7 +51,3 @@ size_t calcStrNum(std::string::iterator& it)
     return strToSizet(num);
 }
 
-int main(){
-    std::string ji = "2F3t4H";
-    std::cout << deComp(ji);
-}
