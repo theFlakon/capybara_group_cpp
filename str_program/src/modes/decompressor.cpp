@@ -1,5 +1,6 @@
 #include <cmath>
 #include <string>
+#include <iostream>
 
 static size_t strToSizet(std::string& str);
 static size_t calcStrNum(std::string::iterator& it);
@@ -48,4 +49,9 @@ size_t calcStrNum(std::string::iterator& it)
     while(std::isdigit(*it));
 
     return strToSizet(num);
+}
+
+int main(){
+    std::string ji = "2F3t4H";
+    std::cout << deComp(ji);
 }

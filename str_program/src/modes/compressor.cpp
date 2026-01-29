@@ -1,38 +1,41 @@
 #include <cstddef>
 #include <string>
+#include <iostream>
+#include <cctype>
 
 std::string compressor(std::string str)
 {
-    size_t len         = str.size();
+    size_t len = str.size();
     std::string result = "";
-    int cnt            = 0;
+    int cnt = 1;
 
-    for(int idx = 0; idx < len; idx++)
+    for(size_t idx = 0; idx < len; idx++)
     {
-        if(idx == 0)
-        {  // begining of string
-            cnt++;
-            continue;
+        if(isdigit(str[idx]))
+        {
+            std::cerr << "Error: string contains num\n";
+            return "";
         }
+
+        if(idx == 0) continue;               // begining of string
 
         if(str[idx - 1] != str[idx])
         {
-            result += '0' + cnt;  // write number
-            result += str[idx - 1];
+            result += std::to_string(cnt);   // write number
+            result += str[idx - 1];          // write letter
             cnt = 1;
         }
 
-        else
-        {
-            cnt++;
-        }
+        else cnt++;
     }
 
     if(cnt != 0)
     {
-        result += '0' + cnt;
+        result += std::to_string(cnt);       // for last sym
         result += str[len - 1];
     }
 
     return result;
 }
+
+

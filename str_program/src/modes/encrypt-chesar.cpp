@@ -6,11 +6,11 @@ std::string chesarEncrypt(std::string input, int shift);
 std::string chesarEncrypt(std::string input, int shift) {
     std::string output = "";
     int alphabetSize = ('z'-'a')+1;
-    shift %= alphabetSize;
+    shift %= alphabetSize;                                      
     for(int i = 0; i < input.size(); i++) {
-        if(!isalpha(input[i])) continue;
-        char newChar = input[i]+shift;
-        if(!isalpha(newChar)) {
+        if(!isalpha(input[i])) continue;        // if num -> continue
+        char newChar = input[i]+shift;          // new chesar sym
+        if(!isalpha(newChar)) {                 
             int newShift = 0;
             if(input[i] <= 'Z') {
                 newShift = shift - (alphabetSize - (input[i]-'A'));
