@@ -1,4 +1,3 @@
-````md
 # str_program
 
 **str_program** is an **educational console application written in C++**.  
