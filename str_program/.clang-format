@@ -26,11 +26,16 @@ NamespaceIndentation: None
 
 # Alignment of consecutive assignments
 # 
-# The result looks like:
+# Consecutive mode looks like:
 # int a             = 1;
 # int someLongName  = 2;
 # double c          = 3.0;
-AlignConsecutiveAssignments: Consecutive
+#
+# None mode looks like:
+# int a = 1;
+# int someLongName = 2;
+# double c = 3.0;
+AlignConsecutiveAssignments: None
 
 # Ptrs and references
 # int* var1, var2; 

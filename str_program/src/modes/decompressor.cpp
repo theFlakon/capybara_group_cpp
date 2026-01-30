@@ -1,6 +1,5 @@
 #include <cmath>
 #include <string>
-#include <iostream>
 
 static size_t strToSizet(std::string& str);
 static size_t calcStrNum(std::string::iterator& it);
@@ -50,4 +49,3 @@ size_t calcStrNum(std::string::iterator& it)
 
     return strToSizet(num);
 }
-

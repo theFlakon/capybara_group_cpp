@@ -1,7 +1,7 @@
-#include <cstddef>
-#include <string>
-#include <iostream>
 #include <cctype>
+#include <cstddef>
+#include <iostream>
+#include <string>
 
 std::string compressor(std::string str)
 {
@@ -17,25 +17,25 @@ std::string compressor(std::string str)
             return "";
         }
 
-        if(idx == 0) continue;               // begining of string
+        if(idx == 0)
+            continue;  // begining of string
 
         if(str[idx - 1] != str[idx])
         {
-            result += std::to_string(cnt);   // write number
-            result += str[idx - 1];          // write letter
+            result += std::to_string(cnt);  // write number
+            result += str[idx - 1];         // write letter
             cnt = 1;
         }
 
-        else cnt++;
+        else
+            cnt++;
     }
 
     if(cnt != 0)
     {
-        result += std::to_string(cnt);       // for last sym
+        result += std::to_string(cnt);  // for last sym
         result += str[len - 1];
     }
 
     return result;
 }
-
-
