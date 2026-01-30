@@ -7,14 +7,12 @@
 #include "decrypt-chesar.h"
 #include "encrypt-chesar.h"
 
-static std::string parseFlags(const std::string& inputFlag,
-                              const std::string& inputString);
+static std::string parseFlags(const std::string& inputFlag);
 
 int main(int argc, char** argv)
 {
     const std::string HELP_MESSAGE =
-        "This program allows you to modify your string.\n Syntax: [OPTION] "
-        "[STRING]\nAvailable mods and "
+        "This program allows you to modify your string.\nAvailable mods and "
         "corresponding flags:\n1. --help:  Prints this message\n2. "
         "-c:  String "
         "compressor\n3. -d:  String decompressor\n4. -ec:  Caesar encrypt\n5. "
@@ -24,7 +22,7 @@ int main(int argc, char** argv)
         std::string(argv[0]) +
         ": Invalid usage. Type --help for available options.\n";
 
-    if(argc != 3)
+    if(argc != 2)
     {
         std::cerr << INVALID_ARGS_MESSAGE;
 
@@ -32,7 +30,6 @@ int main(int argc, char** argv)
     }
 
     const std::string INPUT_FLAG = argv[1];
-    const std::string INPUT_STRING = argv[2];
 
     std::string result{};
 
@@ -45,7 +42,7 @@ int main(int argc, char** argv)
 
     try
     {
-        result = parseFlags(INPUT_FLAG, INPUT_STRING);
+        result = parseFlags(INPUT_FLAG);
 
         std::cout << result << std::endl;
 
@@ -60,12 +57,15 @@ int main(int argc, char** argv)
     }
 }
 
-std::string parseFlags(const std::string& inputFlag,
-                       const std::string& inputString)
+std::string parseFlags(const std::string& inputFlag)
 {
     const int ERROR_CODE = -1;
 
     std::string result{};
+    std::string inputString{};
+
+    std::cout << "Enter your string: ";
+    std::getline(std::cin, inputString);
 
     if(inputFlag == "-c")
     {

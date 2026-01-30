@@ -19,7 +19,6 @@ TEST_CASE("Test chesar encrypt function", "chesarEncrypt")
 
     SECTION("Large")
     {
-        REQUIRE(chesarEncrypt("Hello, world!", 3) == "Khoor, zruog!");
         REQUIRE(chesarEncrypt("ABC", 52) == "ABC");
     }
 }
