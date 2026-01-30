@@ -1,9 +1,7 @@
 #include <cctype>
 #include <string>
 
-std::string chesarEncrypt(std::string input, int shift);
-
-std::string chesarEncrypt(std::string input, int shift)
+std::string chesarEncrypt(std::string& input, int shift)
 {
     std::string output = "";
     int alphabetSize = ('z' - 'a') + 1;

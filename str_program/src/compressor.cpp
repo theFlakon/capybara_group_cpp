@@ -3,7 +3,7 @@
 #include <iostream>
 #include <string>
 
-std::string compressor(std::string str)
+std::string compressor(std::string& str)
 {
     size_t len = str.size();
     std::string result = "";

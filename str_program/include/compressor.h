@@ -3,6 +3,6 @@
 
 #include <string>
 
-std::string compressor(std::string str);
+std::string compressor(std::string& str);
 
 #endif
