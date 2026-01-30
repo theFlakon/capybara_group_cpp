@@ -1,10 +1,10 @@
 #include <cmath>
 #include <string>
 
-static size_t strToSizet(std::string& str);
-static size_t calcStrNum(std::string::iterator& it);
+static size_t strToSizet(const std::string& str);
+static size_t calcStrNum(std::string::const_iterator& it);
 
-std::string deComp(std::string& str)
+std::string deComp(const std::string& str)
 {
     std::string result{};
 
@@ -25,7 +25,7 @@ std::string deComp(std::string& str)
     return result;
 }
 
-size_t strToSizet(std::string& str)
+size_t strToSizet(const std::string& str)
 {
     size_t strLen = str.size();
     size_t result = 0;
@@ -36,7 +36,7 @@ size_t strToSizet(std::string& str)
     return result;
 }
 
-size_t calcStrNum(std::string::iterator& it)
+size_t calcStrNum(std::string::const_iterator& it)
 {
     std::string num{};
 

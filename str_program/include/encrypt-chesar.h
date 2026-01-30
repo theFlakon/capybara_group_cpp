@@ -3,6 +3,6 @@
 
 #include <string>
 
-std::string chesarEncrypt(std::string& input, int shift);
+std::string chesarEncrypt(const std::string& input, int shift);
 
 #endif

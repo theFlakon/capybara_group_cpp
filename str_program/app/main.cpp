@@ -1,5 +1,5 @@
-#include <iostream>
 #include <cstdlib>
+#include <iostream>
 #include <string>
 
 #include "compressor.h"
@@ -7,49 +7,94 @@
 #include "decrypt-chesar.h"
 #include "encrypt-chesar.h"
 
-int 
-main(int argc, char** argv)
+static std::string parseFlags(const std::string& inputFlag,
+                              const std::string& inputString);
+
+int main(int argc, char** argv)
 {
-    if (argc != 2)
+    const std::string HELP_MESSAGE =
+        "This program allows you to modify your string.\n Syntax: [OPTION] "
+        "[STRING]\nAvailable mods and "
+        "corresponding flags:\n1. --help:  Prints this message\n2. "
+        "-c:  String "
+        "compressor\n3. -d:  String decompressor\n4. -ec:  Caesar encrypt\n5. "
+        "-dc:  Caesar decrypt\n";
+
+    const std::string INVALID_ARGS_MESSAGE =
+        std::string(argv[0]) +
+        ": Invalid usage. Type --help for available options.\n";
+
+    if(argc != 3)
     {
-        std::cerr << "Usage: " << argv[0] << " -<MODE(c for compress, d for decompress, dc for chesar decrypt, ec for chesar encrypt)>" 
-            << std::endl;
+        std::cerr << INVALID_ARGS_MESSAGE;
 
         return EXIT_FAILURE;
     }
-    if(strcmp(argv[1], "-c") != 0 && 
-        strcmp(argv[1], "-d") != 0 && 
-        strcmp(argv[1], "-dc") != 0 && 
-        strcmp(argv[1], "-ec") != 0) {
-        std::cerr << "Undiefined mode. Use one of these: c for compress, d for decompress, dc for chesar decrypt, ec for chesar encrypt" 
-            << std::endl;
+
+    const std::string INPUT_FLAG = argv[1];
+    const std::string INPUT_STRING = argv[2];
+
+    std::string result{};
+
+    if(INPUT_FLAG == "--help")
+    {
+        std::cerr << HELP_MESSAGE;
+
+        return EXIT_SUCCESS;
+    }
+
+    try
+    {
+        result = parseFlags(INPUT_FLAG, INPUT_STRING);
+
+        std::cout << result << std::endl;
+
+        return EXIT_SUCCESS;
+    }
+
+    catch(int exception)
+    {
+        std::cerr << INVALID_ARGS_MESSAGE << std::endl;
 
         return EXIT_FAILURE;
     }
-    std::string input = "";
-    std::string result = "";
-    std::cout << "Enter your string: ";
-    std::cin >> input;
-    if(strcmp(argv[1], "-c") == 0) {
-        result = compressor(input);
-    }
-    else if(strcmp(argv[1], "-d") == 0) {
-        result = deComp(input);
-    }
-    else if(strcmp(argv[1], "-dc") == 0) {
-        int shift = 0;
-        std::cout << "Enter your alpabet shift: ";
-        std::cin >> shift;
-        result = chesarDecrypt(input, shift);
-    }
-    else if(strcmp(argv[1], "-ec") == 0) {
-        int shift = 0;
-        std::cout << "Enter your alpabet shift: ";
-        std::cin >> shift;
-        result = chesarEncrypt(input, shift);
+}
+
+std::string parseFlags(const std::string& inputFlag,
+                       const std::string& inputString)
+{
+    const int ERROR_CODE = -1;
+
+    std::string result{};
+
+    if(inputFlag == "-c")
+    {
+        result = compressor(inputString);
     }
 
-    std::cout << result << std::endl;
+    else if(inputFlag == "-d")
+    {
+        result = deComp(inputString);
+    }
 
-    return EXIT_SUCCESS; 
+    else if(inputFlag == "-ec" || inputFlag == "-dc")
+    {
+        int shift = 0;
+
+        std::cout << "Enter your alpabet shift: ";
+        std::cin >> shift;
+
+        if(inputFlag == "-ec")
+            result = chesarEncrypt(inputString, shift);
+
+        else
+            result = chesarDecrypt(inputString, shift);
+    }
+
+    else
+    {
+        throw ERROR_CODE;
+    }
+
+    return result;
 }

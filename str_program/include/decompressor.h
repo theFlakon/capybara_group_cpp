@@ -3,6 +3,6 @@
 
 #include <string>
 
-std::string deComp(std::string& str);
+std::string deComp(const std::string& str);
 
 #endif

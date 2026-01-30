@@ -1,6 +1,6 @@
 #include <string>
 
-std::string chesarDecrypt(std::string& string, int shift)
+std::string chesarDecrypt(const std::string& string, int shift)
 {
     std::string finalString = "";
     size_t stringSize = string.length();
