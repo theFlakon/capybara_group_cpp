@@ -9,3 +9,5 @@ external/
 # CMake stuff
 CMakeCache.txt
 CMakeFiles/
+
+.cache/
