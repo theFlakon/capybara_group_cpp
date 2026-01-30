@@ -3,6 +3,6 @@
 
 #include <string>
 
-std::string decode(std::string string, int shift);
+std::string chesarDecrypt(std::string string, int shift);
 
 #endif
