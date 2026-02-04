@@ -2,7 +2,8 @@
 #define COMPRESSOR_H
 
 #include <vector>
+#include "element.h"
 
-double compressor(const std::vector<std::vector<double>> & matrix);
+std::vector<Element> compress(const std::vector<std::vector<double>> & matrix);
 
 #endif
