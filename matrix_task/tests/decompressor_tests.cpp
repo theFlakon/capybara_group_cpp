@@ -3,9 +3,9 @@
 
 TEST_CASE("Test string decompressor function", "decompressor")
 {
-    std::vector<std::vector<size_t>> matrix1 = {{0, 1}, {1, 0}};
-    std::vector<std::vector<size_t>> matrix2 = {{1, 1}, {1, 0}};
-    std::vector<std::vector<size_t>> matrix3 = {{1, 0}, {0, 1}};
+    std::vector<std::vector<double>> matrix1 = {{0, 1}, {1, 0}};
+    std::vector<std::vector<double>> matrix2 = {{1, 1}, {1, 0}};
+    std::vector<std::vector<double>> matrix3 = {{1, 0}, {0, 1}};
 
     SECTION("Basic")
     {

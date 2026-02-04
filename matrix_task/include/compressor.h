@@ -4,6 +4,6 @@
 #include <vector>
 #include "element.h"
 
-std::vector<Element> compress(const std::vector<std::vector<double>> & matrix);
+std::vector<struct Element> compress(const std::vector<std::vector<double>> & matrix);
 
 #endif
