@@ -1,1 +1,31 @@
+#include "decompressor.h"
+
+std::vector<std::vector<double>> decompress(std::vector<Element> compressedMatrix, size_t rowsCnt, size_t colsCnt)
+{
+    std::vector<std::vector<double>> newMatrix{};
+
+    for (size_t i = 0; i < rowsCnt; i++)
+    {
+        std::vector<double> row{};
+        for (size_t j = 0; j < colsCnt; j++)
+        {
+            row.push_back(0.0);
+        }
+        newMatrix.push_back(row);
+    }
+
+    for (size_t i = 0; i < compressedMatrix.size(); i++)
+    {
+        int newRow = compressedMatrix[i].row;
+        int newCol = compressedMatrix[i].col;
+        double newVal = compressedMatrix[i].val;
+
+        if (newRow >= 0 && newCol >= 0 && (size_t)newRow < rowsCnt && (size_t)newCol < colsCnt)
+        {
+            newMatrix[newRow][newCol] = newVal;
+        }
+    }
+
+    return newMatrix;
+}
 
