@@ -61,10 +61,10 @@ std::vector<Element> readSparseElements()
     return inputData;
 }
 
-void printFullMatrix(const std::vector<std::vector<double>>& compressedMatrix)
+void printFullMatrix(const std::vector<std::vector<double>>& fullMatrix)
 {
     std::cout << "Full Matrix:\n";
-    for(const auto& row: compressedMatrix)
+    for(const auto& row: fullMatrix)
     {
         for(size_t jdx = 0; jdx < row.size(); jdx++)
         {
@@ -76,9 +76,9 @@ void printFullMatrix(const std::vector<std::vector<double>>& compressedMatrix)
     }
 }
 
-void printCompressed(const std::vector<Element>& fullMatrix)
+void printCompressed(const std::vector<Element>& compressedMatrix)
 {
     std::cout << "Compressed Matrix:\n";
-    for(const auto& e: fullMatrix)
+    for(const auto& e: compressedMatrix)
         std::cout << e.row << ' ' << e.col << ' ' << e.val << '\n';
 }
