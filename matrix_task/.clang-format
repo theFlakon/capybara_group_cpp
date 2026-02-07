@@ -44,7 +44,7 @@ ReferenceAlignment: Left
 
 # Apply indentation rules and reflow long comments into new lines
 # trying to obey the ColumnLimit.
-ReflowComments: Always
+# ReflowComments: Always
 
 ##########
 # SPACES #
@@ -112,7 +112,7 @@ SpaceBeforeParensOptions:
   AfterFunctionDeclarationName: false
   AfterFunctionDefinitionName: false
   AfterIfMacros: false
-  AfterNot: false
+  # AfterNot: false
   AfterOverloadedOperator: false
   AfterPlacementOperator: false
   AfterRequiresInClause: false
