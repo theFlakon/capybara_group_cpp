@@ -14,13 +14,13 @@ std::vector<std::vector<double>> decompress(std::vector<Element> compressedMatri
         newMatrix.push_back(row);
     }
 
-    for (size_t i = 0; i < compressedMatrix.size(); i++)
+    for (size_t i = 0; i < compressedMatrix.size(); ++i)
     {
-        int newRow = compressedMatrix[i].row;
-        int newCol = compressedMatrix[i].col;
+        size_t newRow = compressedMatrix[i].row;
+        size_t newCol = compressedMatrix[i].col;
         double newVal = compressedMatrix[i].val;
 
-        if (newRow >= 0 && newCol >= 0 && (size_t)newRow < rowsCnt && (size_t)newCol < colsCnt)
+        if (newRow >= 0 && newCol >= 0 && newRow < rowsCnt && newCol < colsCnt)
         {
             newMatrix[newRow][newCol] = newVal;
         }
