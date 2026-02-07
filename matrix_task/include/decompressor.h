@@ -2,7 +2,6 @@
 #define DECOMPRESSOR_H
 
 #include <vector>
-#include <iostream>
 #include <cstddef>
 #include "element.h"
 
