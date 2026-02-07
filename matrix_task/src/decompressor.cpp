@@ -1,6 +1,7 @@
 #include "decompressor.h"
+#include "element.h"
 
-std::vector<std::vector<double>> decompress(std::vector<Element> compressedMatrix, size_t rowsCnt, size_t colsCnt)
+std::vector<std::vector<double>> decompress(std::vector<Element>& compressedMatrix, size_t rowsCnt, size_t colsCnt)
 {
     std::vector<std::vector<double>> newMatrix{};
 
