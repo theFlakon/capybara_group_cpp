@@ -1,6 +1,4 @@
-#include <iostream>
-#include <vector>
-#include <element.h>
+#include <getElement.h>
 
 double getElement(std::vector<struct Element> & compressedMatrix, size_t rowsCnt, size_t colsCnt, size_t needRow, size_t needCol)
 {
