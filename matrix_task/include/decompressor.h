@@ -4,6 +4,6 @@
 #include <vector>
 #include "element.h"
 
-std::vector<std::vector<double>> decompress(const std::vector<struct Element> & compressedMatrix, size_t rowsCnt, size_t colsCnt);
+std::vector<std::vector<double>> decompress(const std::vector<struct Element> & compressedMatrix, size_t rowCnt, size_t colsCnt);
 
 #endif
