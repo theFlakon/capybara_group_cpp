@@ -1,7 +1,7 @@
 #include <getElement.h>
 #include <element.h>
 
-double getElement(std::vector<struct Element> & compressedMatrix, size_t rowsCnt, size_t colsCnt, size_t needRow, size_t needCol)
+double getElement(const std::vector<struct Element> & compressedMatrix, size_t rowsCnt, size_t colsCnt, size_t needRow, size_t needCol)
 {
     if (needRow >= rowsCnt || needCol >= colsCnt)
     {

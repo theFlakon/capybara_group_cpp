@@ -13,6 +13,10 @@ struct Element {
         this->col = col;
         this->val = val;
     }
+
+    bool operator==(const Element & other) const {
+        return row == other.row && col == other.col && val == other.val;
+    }
 };
 
 #endif

@@ -32,11 +32,14 @@ set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 
 # just creating library
-add_library(str_modes_lib
+add_library(matrix_lib
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/compressor.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/decompressor.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/getElement.cpp
 )
 
 # we tell compiler "headlines lie in folder include"
-target_include_directories(str_modes_lib
+target_include_directories(matrix_lib
     PUBLIC include      # link lib and headline, PUBLIC because we will need this header later (48 line)
 )
 
@@ -44,7 +47,7 @@ target_include_directories(str_modes_lib
 add_executable(program 
     app/main.cpp)
 
-target_link_libraries(program PRIVATE str_modes_lib)  # PRIVATE because we don`t want access to the lib from program
+target_link_libraries(program PRIVATE matrix_lib)  # PRIVATE because we don`t want access to the lib from program
 
 if (BUILD_TESTS)
     include(FetchContent)
@@ -59,11 +62,14 @@ if (BUILD_TESTS)
     
     # сompile the program named "tests" from the file tests/test.cpp
     add_executable(tests 
+        ${CMAKE_CURRENT_SOURCE_DIR}/tests/compressor_tests.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/tests/decompressor_tests.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/tests/getElement_tests.cpp
     )
 
     # connect out library and Catch2 to the tests program
-    target_link_libraries(tests PRIVATE str_modes_lib Catch2::Catch2WithMain)
+    target_link_libraries(tests PRIVATE matrix_lib Catch2::Catch2WithMain)
 
     # register and run tests executable with CTest
-    add_test(NAME TestsStrModesFunction COMMAND $<TARGET_FILE:tests>) 
+    add_test(NAME TestsMatrixLibFunction COMMAND $<TARGET_FILE:tests>) 
 endif()
