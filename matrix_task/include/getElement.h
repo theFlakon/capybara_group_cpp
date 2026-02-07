@@ -1,5 +1,5 @@
-#ifndef COMPRESSOR_H
-#define COMPRESSOR_H
+#ifndef GETELEMENT_H
+#define GETELEMENT_H
 
 #include <iostream>
 #include <vector>
