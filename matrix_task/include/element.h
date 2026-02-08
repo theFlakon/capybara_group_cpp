@@ -3,7 +3,8 @@
 
 #include <cstddef>
 
-struct Element {
+struct Element
+{
     size_t row;
     size_t col;
     double val;
@@ -14,7 +15,8 @@ struct Element {
         this->val = val;
     }
 
-    bool operator==(const Element & other) const {
+    bool operator==(const Element& other) const
+    {
         return row == other.row && col == other.col && val == other.val;
     }
 };
