@@ -64,7 +64,7 @@ if (BUILD_TESTS)
     add_executable(tests 
         ${CMAKE_CURRENT_SOURCE_DIR}/tests/compressor_tests.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/tests/decompressor_tests.cpp
-        ${CMAKE_CURRENT_SOURCE_DIR}/tests/getElement_tests.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/tests/get_element_tests.cpp
     )
 
     # connect out library and Catch2 to the tests program

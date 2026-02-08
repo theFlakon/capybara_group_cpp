@@ -1,18 +1,20 @@
-#include <getElement.h>
 #include <element.h>
+#include <get_element.h>
 
-double getElement(const std::vector<struct Element> & compressedMatrix, size_t rowsCnt, size_t colsCnt, size_t needRow, size_t needCol)
+double getElement(const std::vector<struct Element>& compressedMatrix,
+                  size_t rowsCnt, size_t colsCnt, size_t needRow,
+                  size_t needCol)
 {
-    if (needRow >= rowsCnt || needCol >= colsCnt)
+    if(needRow >= rowsCnt || needCol >= colsCnt)
     {
         std::cerr << "getElement error: index out of range\n";
         return 0.0;
     }
 
-    for (size_t idx = 0; idx < compressedMatrix.size(); ++idx)
-    {
-        if (compressedMatrix[idx].row == needRow && compressedMatrix[idx].col == needCol) return compressedMatrix[idx].val;
-    }    
+    for(size_t idx = 0; idx < compressedMatrix.size(); ++idx)
+        if(compressedMatrix[idx].row == needRow &&
+           compressedMatrix[idx].col == needCol)
+            return compressedMatrix[idx].val;
 
     return 0.0;
-}   
+}
