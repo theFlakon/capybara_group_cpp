@@ -1,20 +1,19 @@
 #include "compressor.h"
-#include "element.h"
+#include "matrix.h"
 #include <vector>
 
-std::vector<struct Element>
-compress(const std::vector<std::vector<double>>& matrix)
+ComprMatrix compress(const Matrix& matrix)
 {
-    std::vector<struct Element> result{};
+    ComprMatrix result{};
 
-    for(size_t i = 0; i < matrix.size(); ++i)
+    for(size_t i = 0; i < matrix.colsCnt; ++i)
     {
-        for(size_t j = 0; j < matrix[i].size(); ++j)
+        for(size_t j = 0; j < matrix.rowsCnt; ++j)
         {
-            if(matrix[i][j] == 0)
+            if(matrix.data[i][j] == 0)
                 continue;
 
-            result.push_back(Element(i, j, matrix[i][j]));
+            result.push_back(Element(i, j, matrix.data[i][j]));
         }
     }
     return result;

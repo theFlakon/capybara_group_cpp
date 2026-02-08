@@ -1,17 +1,16 @@
-#include "element.h"
-#include "utils.hpp"
+#include "matrix.h"
 #include <iostream>
 #include <vector>
 
-MatrixSize readSize()
+static void readInputElements(ComprMatrix& inputData, size_t countNonZero);
+
+void readSize(Matrix& matrix)
 {
-    MatrixSize matrixSize{};
     std::cout << "Enter size of matrix: <countRow> <countColumn>\n";
-    std::cin >> matrixSize.rows >> matrixSize.cols;
-    return matrixSize;
+    std::cin >> matrix.rowsCnt >> matrix.colsCnt;
 }
 
-std::vector<Element> readSparseElements()
+ComprMatrix readSparseElements()
 {
     int countNonZero = 0;
     std::cout << "Enter count non zero element\n";
@@ -22,6 +21,14 @@ std::vector<Element> readSparseElements()
     std::cout << "Enter " << countNonZero
               << " non zero element(s): <cellRow> <cellColumn> <value>\n";
 
+    readInputElements(inputData, countNonZero);
+
+    return inputData;
+}
+
+// Static
+void readInputElements(ComprMatrix& inputData, size_t countNonZero)
+{
     for(int idx = 0; idx < countNonZero; idx++)
     {
         size_t row = 0;
@@ -30,14 +37,13 @@ std::vector<Element> readSparseElements()
         std::cin >> row >> col >> val;
         inputData.push_back({row, col, val});
     }
-    return inputData;
 }
 
-void printFullMatrix(const std::vector<std::vector<double>>& fullMatrix)
+void printFullMatrix(const Matrix& fullMatrix)
 {
     std::cout << "Full Matrix:\n";
 
-    for(const auto& row: fullMatrix)
+    for(const auto& row: fullMatrix.data)
     {
         for(size_t jdx = 0; jdx < row.size(); jdx++)
             std::cout << row[jdx] << ' ';
@@ -46,7 +52,7 @@ void printFullMatrix(const std::vector<std::vector<double>>& fullMatrix)
     }
 }
 
-void printCompressed(const std::vector<Element>& compressedMatrix)
+void printCompressed(const ComprMatrix& compressedMatrix)
 {
     std::cout << "Compressed Matrix:\n";
     for(const auto& e: compressedMatrix)

@@ -1,7 +1,10 @@
-#ifndef ELEMENT_STRUCT_H
-#define ELEMENT_STRUCT_H
+#ifndef MATRIX_H
+#define MATRIX_H
 
 #include <cstddef>
+#include <vector>
+
+typedef std::vector<struct Element> ComprMatrix;
 
 struct Element
 {
@@ -20,5 +23,12 @@ struct Element
         return row == other.row && col == other.col && val == other.val;
     }
 };
+
+typedef struct Matrix
+{
+    size_t rowsCnt;
+    size_t colsCnt;
+    std::vector<std::vector<double>> data;
+} Matrix;
 
 #endif

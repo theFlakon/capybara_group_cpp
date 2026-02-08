@@ -1,10 +1,9 @@
-#include "element.h"
 #include "get_element.h"
+#include "matrix.h"
 #include <iostream>
 
-double getElement(const std::vector<struct Element>& compressedMatrix,
-                  size_t rowsCnt, size_t colsCnt, size_t needRow,
-                  size_t needCol)
+double getElement(const ComprMatrix& compressedMatrix, size_t rowsCnt,
+                  size_t colsCnt, size_t needRow, size_t needCol)
 {
     if(needRow >= rowsCnt || needCol >= colsCnt)
     {
@@ -13,9 +12,13 @@ double getElement(const std::vector<struct Element>& compressedMatrix,
     }
 
     for(size_t idx = 0; idx < compressedMatrix.size(); ++idx)
-        if(compressedMatrix[idx].row == needRow &&
-           compressedMatrix[idx].col == needCol)
+    {
+        bool isThisElement = compressedMatrix[idx].row == needRow &&
+                             compressedMatrix[idx].col == needCol;
+
+        if(isThisElement)
             return compressedMatrix[idx].val;
+    }
 
     return 0.0;
 }

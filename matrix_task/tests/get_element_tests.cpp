@@ -1,5 +1,5 @@
-#include "element.h"
 #include "get_element.h"
+#include "matrix.h"
 #include <catch2/catch_test_macros.hpp>
 
 TEST_CASE("Test get element function", "getElement")

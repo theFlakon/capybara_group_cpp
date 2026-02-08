@@ -1,11 +1,8 @@
 #ifndef DECOMPRESSOR_H
 #define DECOMPRESSOR_H
 
-#include "element.h"
-#include <vector>
+#include "matrix.h"
 
-std::vector<std::vector<double>>
-decompress(const std::vector<struct Element>& compressedMatrix, size_t rowCnt,
-           size_t colsCnt);
+void decompress(const ComprMatrix& compressedMatrix, Matrix& matrix);
 
 #endif

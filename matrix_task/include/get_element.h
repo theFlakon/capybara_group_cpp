@@ -1,11 +1,9 @@
 #ifndef GETELEMENT_H
 #define GETELEMENT_H
 
-#include "element.h"
-#include <vector>
+#include "matrix.h"
 
-double getElement(const std::vector<struct Element>& compressedMatrix,
-                  size_t rowsCnt, size_t colsCnt, size_t needRow,
-                  size_t needCol);
+double getElement(const ComprMatrix& compressedMatrix, size_t rowsCnt,
+                  size_t colsCnt, size_t needRow, size_t needCol);
 
 #endif

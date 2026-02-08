@@ -1,22 +1,23 @@
 #include "compressor.h"
 #include "decompressor.h"
-#include "element.h"
 #include "io_funcs.hpp"
-#include "utils.hpp"
+#include "matrix.h"
 #include <cstdlib>
-#include <vector>
 
 int main()
 {
-    MatrixSize matrix = readSize();
-    std::vector<Element> inputData = readSparseElements();
+    Matrix matrix{};
 
-    std::vector<std::vector<double>> fullMatrix =
-        decompress(inputData, matrix.rows, matrix.cols);
-    printFullMatrix(fullMatrix);
+    readSize(matrix);
+    ComprMatrix compressedMatrix = readSparseElements();
 
-    std::vector<struct Element> compressMatrix = compress(fullMatrix);
-    printCompressed(compressMatrix);
+    decompress(compressedMatrix, matrix);
+    printFullMatrix(matrix);
+
+    ComprMatrix testComprMatrix =
+        compress(matrix);  // Just to show the work of this func
+
+    printCompressed(testComprMatrix);
 
     return EXIT_SUCCESS;
 }

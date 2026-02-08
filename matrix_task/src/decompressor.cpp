@@ -1,46 +1,32 @@
 #include "decompressor.h"
-#include "element.h"
+#include "matrix.h"
 #include <vector>
 
-static void
-createMatrixRows(const std::vector<struct Element>& compressedMatrix,
-                 std::vector<std::vector<double>>& newMatrix, size_t rowsCnt,
-                 size_t colsCnt);
+static void createMatrixRows(const ComprMatrix& compressedMatrix,
+                             Matrix& matrix);
 
-static void fillMatrix(const std::vector<struct Element>& compressedMatrix,
-                       std::vector<std::vector<double>>& newMatrix,
-                       size_t rowsCnt, size_t colsCnt);
+static void fillMatrix(const ComprMatrix& compressedMatrix, Matrix& matrix);
 
-std::vector<std::vector<double>>
-decompress(const std::vector<struct Element>& compressedMatrix, size_t rowsCnt,
-           size_t colsCnt)
+void decompress(const ComprMatrix& compressedMatrix, Matrix& matrix)
 {
-    std::vector<std::vector<double>> newMatrix{};
-
-    createMatrixRows(compressedMatrix, newMatrix, rowsCnt, colsCnt);
-    fillMatrix(compressedMatrix, newMatrix, rowsCnt, colsCnt);
-
-    return newMatrix;
+    createMatrixRows(compressedMatrix, matrix);
+    fillMatrix(compressedMatrix, matrix);
 }
 
-void createMatrixRows(const std::vector<struct Element>& compressedMatrix,
-                      std::vector<std::vector<double>>& newMatrix,
-                      size_t rowsCnt, size_t colsCnt)
+void createMatrixRows(const ComprMatrix& compressedMatrix, Matrix& matrix)
 {
-    for(size_t i = 0; i < rowsCnt; i++)
+    for(size_t i = 0; i < matrix.rowsCnt; i++)
     {
         std::vector<double> row{};
 
-        for(size_t j = 0; j < colsCnt; j++)
+        for(size_t j = 0; j < matrix.colsCnt; j++)
             row.push_back(0.0);
 
-        newMatrix.push_back(row);
+        matrix.data.push_back(row);
     }
 }
 
-void fillMatrix(const std::vector<struct Element>& compressedMatrix,
-                std::vector<std::vector<double>>& newMatrix, size_t rowsCnt,
-                size_t colsCnt)
+void fillMatrix(const ComprMatrix& compressedMatrix, Matrix& matrix)
 {
     for(size_t comprMatrixIdx = 0; comprMatrixIdx < compressedMatrix.size();
         ++comprMatrixIdx)
@@ -49,10 +35,10 @@ void fillMatrix(const std::vector<struct Element>& compressedMatrix,
         size_t newCol = compressedMatrix[comprMatrixIdx].col;
         double newVal = compressedMatrix[comprMatrixIdx].val;
 
-        bool isRowColValid =
-            newRow >= 0 && newCol >= 0 && newRow < rowsCnt && newCol < colsCnt;
+        bool isRowColValid = newRow >= 0 && newCol >= 0 &&
+                             newRow < matrix.rowsCnt && newCol < matrix.colsCnt;
 
         if(isRowColValid)
-            newMatrix[newRow][newCol] = newVal;
+            matrix.data[newRow][newCol] = newVal;
     }
 }
