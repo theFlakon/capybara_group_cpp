@@ -4,10 +4,10 @@
 
 TEST_CASE("Test get element function", "getElement")
 {
-    std::vector<struct Element> compressedMatrix1 = {{0, 1, 1}, {1, 0, 1}};
-    std::vector<struct Element> compressedMatrix2 = {
+    ComprMatrix compressedMatrix1 = {{0, 1, 1}, {1, 0, 1}};
+    ComprMatrix compressedMatrix2 = {
         {0, 0, 1}, {0, 1, 1}, {1, 0, 1}};
-    std::vector<struct Element> compressedMatrix3 = {{0, 0, 1}, {1, 1, 1}};
+    ComprMatrix compressedMatrix3 = {{0, 0, 1}, {1, 1, 1}};
 
     SECTION("Basic")
     {
