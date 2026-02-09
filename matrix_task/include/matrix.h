@@ -29,6 +29,11 @@ typedef struct Matrix
     size_t rowsCnt;
     size_t colsCnt;
     std::vector<std::vector<double>> data;
+
+    bool operator ==(Matrix& other) const 
+    {
+        return rowsCnt == other.rowsCnt && colsCnt == other.colsCnt && data == other.data;
+    }
 } Matrix;
 
 #endif

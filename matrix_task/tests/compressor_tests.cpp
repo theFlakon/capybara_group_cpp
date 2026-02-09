@@ -4,14 +4,14 @@
 
 TEST_CASE("Test matrix compressor function", "compressor")
 {
-    std::vector<std::vector<double>> matrix1 = {{0, 1}, {1, 0}};
-    std::vector<std::vector<double>> matrix2 = {{1, 1}, {1, 0}};
-    std::vector<std::vector<double>> matrix3 = {{1, 0}, {0, 1}};
+    Matrix matrix1 = {2, 2, {{0, 1}, {1, 0}}};
+    Matrix matrix2 = {2, 2, {{1, 1}, {1, 0}}};
+    Matrix matrix3 = {2, 2, {{1, 0}, {0, 1}}};
 
-    std::vector<struct Element> compressedMatrix1 = {{0, 1, 1}, {1, 0, 1}};
-    std::vector<struct Element> compressedMatrix2 = {
+    ComprMatrix compressedMatrix1 = {{0, 1, 1}, {1, 0, 1}};
+    ComprMatrix compressedMatrix2 = {
         {0, 0, 1}, {0, 1, 1}, {1, 0, 1}};
-    std::vector<struct Element> compressedMatrix3 = {{0, 0, 1}, {1, 1, 1}};
+    ComprMatrix compressedMatrix3 = {{0, 0, 1}, {1, 1, 1}};
 
     SECTION("Basic")
     {
