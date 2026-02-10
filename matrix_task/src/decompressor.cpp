@@ -1,33 +1,44 @@
 #include "decompressor.h"
-#include "element.h"
+#include "matrix.h"
 #include <vector>
 
-std::vector<std::vector<double>> decompress(const std::vector<struct Element>& compressedMatrix, size_t rowsCnt, size_t colsCnt)
+static void createMatrixRows(const ComprMatrix& compressedMatrix,
+                             Matrix& matrix);
+
+static void fillMatrix(const ComprMatrix& compressedMatrix, Matrix& matrix);
+
+void decompress(const ComprMatrix& compressedMatrix, Matrix& matrix)
 {
-    std::vector<std::vector<double>> newMatrix{};
-
-    for (size_t i = 0; i < rowsCnt; i++)
-    {
-        std::vector<double> row{};
-        for (size_t j = 0; j < colsCnt; j++)
-        {
-            row.push_back(0.0);
-        }
-        newMatrix.push_back(row);
-    }
-
-    for (size_t i = 0; i < compressedMatrix.size(); ++i)
-    {
-        size_t newRow = compressedMatrix[i].row;
-        size_t newCol = compressedMatrix[i].col;
-        double newVal = compressedMatrix[i].val;
-
-        if (newRow >= 0 && newCol >= 0 && newRow < rowsCnt && newCol < colsCnt)
-        {
-            newMatrix[newRow][newCol] = newVal;
-        }
-    }
-
-    return newMatrix;
+    createMatrixRows(compressedMatrix, matrix);
+    fillMatrix(compressedMatrix, matrix);
 }
 
+void createMatrixRows(const ComprMatrix& compressedMatrix, Matrix& matrix)
+{
+    for(size_t i = 0; i < matrix.rowsCnt; i++)
+    {
+        std::vector<double> row{};
+
+        for(size_t j = 0; j < matrix.colsCnt; j++)
+            row.push_back(0.0);
+
+        matrix.data.push_back(row);
+    }
+}
+
+void fillMatrix(const ComprMatrix& compressedMatrix, Matrix& matrix)
+{
+    for(size_t comprMatrixIdx = 0; comprMatrixIdx < compressedMatrix.size();
+        ++comprMatrixIdx)
+    {
+        size_t newRow = compressedMatrix[comprMatrixIdx].row;
+        size_t newCol = compressedMatrix[comprMatrixIdx].col;
+        double newVal = compressedMatrix[comprMatrixIdx].val;
+
+        bool isRowColValid = newRow >= 0 && newCol >= 0 &&
+                             newRow < matrix.rowsCnt && newCol < matrix.colsCnt;
+
+        if(isRowColValid)
+            matrix.data[newRow][newCol] = newVal;
+    }
+}
