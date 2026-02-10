@@ -26,6 +26,7 @@ add_library(matrix_lib
     ${CMAKE_CURRENT_SOURCE_DIR}/src/compressor.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/decompressor.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/get_element.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/add_sparse.cpp
 )
 
 target_include_directories(matrix_lib
@@ -53,6 +54,7 @@ if (BUILD_TESTS)
         ${CMAKE_CURRENT_SOURCE_DIR}/tests/compressor_tests.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/tests/decompressor_tests.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/tests/get_element_tests.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/tests/add_sparse_tests.cpp
     )
 
     target_link_libraries(tests PRIVATE matrix_lib Catch2::Catch2WithMain)
