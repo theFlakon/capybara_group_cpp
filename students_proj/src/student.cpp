@@ -23,6 +23,7 @@ public:
         return gradesSum / gradesCnt;
     }
 
+    // Getters
     size_t getId() const
     {
         return _id;
@@ -37,4 +38,22 @@ public:
     {
         return _surname;
     }
+    // End of getters
+
+    // Setters
+    void setId(size_t id)
+    {
+        _id = id;
+    }
+
+    void setGrades(std::vector<double> grades)
+    {
+        _grades = std::move(grades);
+    }
+
+    void setSurname(std::string surname)
+    {
+        _surname = std::move(surname);
+    }
+    // End of setters
 };
