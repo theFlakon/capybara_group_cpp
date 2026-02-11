@@ -1,3 +1,4 @@
+#include <numeric>
 #include <string>
 #include <vector>
 
@@ -14,11 +15,26 @@ public:
     {
     }
 
-    double calcAvgGrade
-
-        size_t
-        getId()
+    double calcAvgGrade() const
     {
-        return this->_id;
+        double gradesSum = std::accumulate(_grades.begin(), _grades.end(), 0);
+        auto gradesCnt = static_cast<double>(_grades.size());
+
+        return gradesSum / gradesCnt;
+    }
+
+    size_t getId() const
+    {
+        return _id;
+    }
+
+    const std::vector<double>& getStudentsVec() const
+    {
+        return _grades;
+    }
+
+    const std::string& getSurname() const
+    {
+        return _surname;
     }
 };
