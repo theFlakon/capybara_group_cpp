@@ -31,4 +31,25 @@ public:
     int getStudentCount() {
         return _studentsList.size();
     }
+
+    double getAverageGroupGrade() {
+        double averageGroupScore = 0;
+        size_t studentsLength = getStudentCount();
+
+        for(int i = 0; i < studentsLength; i++) {
+            averageGroupScore += _studentsList[i].calcAvgGrade();
+        }
+
+        return averageGroupScore / studentsLength;
+    }
+
+    double getAverageMaxStudentsGrade() {
+        double maxGrade = 0;
+
+        for(int i = 0; i < getStudentCount(); i++) {
+            maxGrade = std::max(_studentsList[i].calcAvgGrade(), maxGrade);
+        }
+
+        return maxGrade;
+    }
 };
