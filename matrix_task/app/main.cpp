@@ -1,23 +1,26 @@
+#include "add_sparse.h"
 #include "compressor.h"
 #include "decompressor.h"
-#include "add_sparse.h"
 #include "io_funcs.hpp"
 #include "matrix.h"
 #include <cstdlib>
-#include <string>
 #include <iostream>
+#include <string>
 
-int main(int argc, char ** argv)
+int main(int argc, char** argv)
 
 {
-    if (argc < 2) {
-        std::cout << "ERROR: I need ./program <mode>\n <ap> for add_sparse\n<cm> for comp/decomp\n";
+    if(argc < 2)
+    {
+        std::cout << "ERROR: I need ./program <mode>\n <ap> for "
+                     "add_sparse\n<cm> for comp/decomp\n";
         return EXIT_FAILURE;
     }
 
     const std::string mode = argv[1];
 
-    if (mode == "cm") {
+    if(mode == "cm")
+    {
         Matrix matrix{};
 
         readSize(matrix);
@@ -32,19 +35,20 @@ int main(int argc, char ** argv)
         printCompressed(testComprMatrix);
     }
 
-    else if (mode == "ap") {
+    else if(mode == "ap")
+    {
         ComprMatrix cmatrixA = readSparseElements();
         ComprMatrix cmatrixB = readSparseElements();
 
-        sortSparse(cmatrixA); //sort for the alghorithm
-        sortSparse(cmatrixB); //sort for the alghorithm
+        sortSparse(cmatrixA);  // sort for the alghorithm
+        sortSparse(cmatrixB);  // sort for the alghorithm
 
         ComprMatrix resultMatrix = addSparse(cmatrixA, cmatrixB);
 
         printCompressed(resultMatrix);
-
     }
-    else {
+    else
+    {
         std::cout << "ERROR: Mode doenst exist\n";
         return EXIT_FAILURE;
     }
