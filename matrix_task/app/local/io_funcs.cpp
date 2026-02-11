@@ -1,6 +1,7 @@
 #include "matrix.h"
 #include <iostream>
 #include <vector>
+#include <algorithm>
 
 static void readInputElements(ComprMatrix& inputData, size_t countNonZero);
 
@@ -25,6 +26,8 @@ ComprMatrix readSparseElements()
 
     return inputData;
 }
+
+
 
 // Static
 void readInputElements(ComprMatrix& inputData, size_t countNonZero)
@@ -57,4 +60,14 @@ void printCompressed(const ComprMatrix& compressedMatrix)
     std::cout << "Compressed Matrix:\n";
     for(const auto& e: compressedMatrix)
         std::cout << e.row << ' ' << e.col << ' ' << e.val << '\n';
+}
+
+
+void sortSparse(ComprMatrix& matrix) {
+    std::sort(matrix.begin(), matrix.end(),
+        [](const Element& a, const Element& b) {
+            if (a.row != b.row)
+                return a.row < b.row;
+            return a.col < b.col;
+        });
 }

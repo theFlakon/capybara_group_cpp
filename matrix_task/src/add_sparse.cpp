@@ -2,6 +2,7 @@
 #include "matrix.h"
 #include <cstddef>
 #include <cstdlib>
+#include <cmath>
 
 ComprMatrix addSparse(const ComprMatrix& lhs, const ComprMatrix& rhs) {
     ComprMatrix result;
