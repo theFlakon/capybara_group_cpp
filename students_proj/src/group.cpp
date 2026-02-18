@@ -28,6 +28,10 @@ public:
         return topThree;
     }
 
+    void addStudent(const Student& student) {
+        _studentsList.push_back(student);
+    }
+
     int getStudentCount() {
         return _studentsList.size();
     }
