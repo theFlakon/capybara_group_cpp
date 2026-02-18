@@ -1,14 +1,15 @@
+#include "student.hpp"
 #include <numeric>
 #include <string>
 #include <vector>
-#include "student.hpp"
-
 
 Student::Student(size_t id, std::vector<double> grades, std::string surname)
-    : _id(id), _grades(std::move(grades)), _surname(std::move(surname)) {
-
+    : _id(id), _grades(std::move(grades)), _surname(std::move(surname))
+{
 }
- 
+
+Student::Student() = default;
+
 double Student::calcAvgGrade() const
 {
     double gradesSum = std::accumulate(_grades.begin(), _grades.end(), 0);

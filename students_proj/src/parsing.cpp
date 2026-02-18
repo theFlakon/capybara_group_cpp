@@ -2,12 +2,18 @@
 #include <string>
 #include <vector>
 
-static bool getNum(size_t& dest, std::string::const_iterator& srcIt,
-                   const std::string::const_iterator strEnd);
+#include "student.hpp"
+
+static bool getNaturalNum(size_t& dest, std::string::const_iterator& srcIt,
+                          const std::string::const_iterator strEnd);
+static bool getDoubleNum(double& dest, std::string::const_iterator& srcIt,
+                         const std::string::const_iterator strEnd);
+
 static bool getWord(std::string& dest, std::string::const_iterator& srcIt,
                     const std::string::const_iterator strEnd);
+static bool checkDoubleRel(const std::string::const_iterator& srcId);
 
-bool parseRow(std::string& row)
+bool parseLine(std::string& row, Student& rsStudentData)
 {
     // ------------------------------------------------
     // For the proper work
@@ -25,9 +31,9 @@ bool parseRow(std::string& row)
 
     size_t studentId = 0;
     std::string surname{};
-    std::vector<size_t> gradesVec{};
+    std::vector<double> gradesVec{};
 
-    if(!getNum(studentId, rowIt, row.cend()))
+    if(!getNaturalNum(studentId, rowIt, row.cend()))
         return false;
 
     if(!getWord(surname, rowIt, row.cend()))
@@ -35,19 +41,56 @@ bool parseRow(std::string& row)
 
     for(size_t gradeIdx = 0; gradeIdx < GRADES_CNT; ++gradeIdx)
     {
-        size_t currGrade = 0;
+        double currGrade = 0;
 
-        if(!getNum(currGrade, rowIt, row.cend()))
+        if(!getDoubleNum(currGrade, rowIt, row.cend()))
             return false;
 
         gradesVec.push_back(currGrade);
     }
 
+    rsStudentData.setId(studentId);
+    rsStudentData.setSurname(surname);
+    rsStudentData.setGrades(gradesVec);
+
     return true;
 }
 
-bool getNum(size_t& dest, std::string::const_iterator& srcIt,
-            const std::string::const_iterator strEnd)
+bool checkDoubleRel(const std::string::const_iterator& srcId)
+{
+    char prevCh = *(srcId - 1);
+    char currCh = *srcId;
+
+    bool isDotValid = currCh == '.' && isdigit(prevCh);
+
+    return (isdigit(currCh) || isDotValid);
+}
+
+bool getDoubleNum(double& dest, std::string::const_iterator& srcIt,
+                  const std::string::const_iterator strEnd)
+{
+    std::string numBuffer{};
+
+    do
+    {
+        bool isCharValid = checkDoubleRel(srcIt);
+
+        if(srcIt == strEnd || !isdigit(*srcIt))
+            return false;
+
+        numBuffer += *srcIt;
+    }
+    while(*++srcIt != ' ');
+
+    dest = static_cast<size_t>(std::stod(numBuffer));
+
+    srcIt++;  // Go to the char after space
+
+    return true;
+}
+
+bool getNaturalNum(size_t& dest, std::string::const_iterator& srcIt,
+                   const std::string::const_iterator strEnd)
 {
     std::string numBuffer{};
 

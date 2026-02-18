@@ -14,6 +14,7 @@ private:
 
 public:
     Student(size_t id, std::vector<double> grades, std::string surname);
+    Student();
     double calcAvgGrade() const;
 
     size_t getId() const;
