@@ -1,12 +1,18 @@
+#include <cstdlib>
 #include <fstream>
+#include <iostream>
 #include "output.hpp"
 #include "group.hpp"
 
 int main() {
     std::ifstream input("data.txt");
-    Group newGroup{};
-    bool group = makeGroup(input, newGroup);
+    if (!input.is_open()) {
+        std::cout << "ERROR FILE\n";
+        return EXIT_FAILURE;
+    }
+    Group new_group;
+    bool group = makeGroup(input, new_group);
 
-    outputGroupInfo(newGroup);
-    return 1;
+    outputGroupInfo(new_group);
+    return EXIT_SUCCESS;
 }
