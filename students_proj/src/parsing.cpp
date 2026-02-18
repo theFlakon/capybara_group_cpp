@@ -1,48 +1,85 @@
+#include <cctype>
 #include <string>
 #include <vector>
-#include <sstream>
-#include <cstddef>
+
+static bool getNum(size_t& dest, std::string::const_iterator& srcIt,
+                   const std::string::const_iterator strEnd);
+static bool getWord(std::string& dest, std::string::const_iterator& srcIt,
+                    const std::string::const_iterator strEnd);
 
 bool parseRow(std::string& row)
 {
-    if (row.empty()) return false;
+    // ------------------------------------------------
+    // For the proper work
+    // last grade without this is processed incorrectly)
 
-    std::stringstream ss(s: row);
+    if(row[row.length() - 1] == '\n')
+        row.pop_back();
+    row += ' ';
 
-    /* parse id and check */ 
-    size_t id  = 0;
-    ss >> id;
-    
-    /* parse surname and check */
+    // ------------------------------------------------
+
+    const size_t GRADES_CNT = 3;
+
+    auto rowIt = row.cbegin();
+
+    size_t studentId = 0;
     std::string surname{};
-    ss >> surname;
+    std::vector<size_t> gradesVec{};
 
-    // first letter check
-    if (islpha(surname[0]))
+    if(!getNum(studentId, rowIt, row.cend()))
+        return false;
+
+    if(!getWord(surname, rowIt, row.cend()))
+        return false;
+
+    for(size_t gradeIdx = 0; gradeIdx < GRADES_CNT; ++gradeIdx)
     {
-        if (isupper(surname[0])) continue;
-        else return false;
-    } else return false;
+        size_t currGrade = 0;
 
-    // other letters check
-    for (size_t idx = 0; idx < surname.size(); ++idx)
+        if(!getNum(currGrade, rowIt, row.cend()))
+            return false;
+
+        gradesVec.push_back(currGrade);
+    }
+
+    return true;
+}
+
+bool getNum(size_t& dest, std::string::const_iterator& srcIt,
+            const std::string::const_iterator strEnd)
+{
+    std::string numBuffer{};
+
+    do
     {
-        if (isalpha(surname[idx]))
-        {
-            if (islower(surname[idx])) continue;
-            else return false;
-        }
-    }   else return false;
+        if(srcIt == strEnd || !isdigit(*srcIt))
+            return false;
 
-    /* parse first grade */ 
-    size_t firstGrade  = 0;
-    ss >> firstGrade;
+        numBuffer += *srcIt;
+    }
+    while(*++srcIt != ' ');
 
-    /* parse second grade */ 
-    size_t secondGrade  = 0;
-    ss >> secondGrade;
-    
-    /* parse third grade */ 
-    size_t thirdGrade  = 0;
-    ss >> thirdGrade;
-}   
+    dest = static_cast<size_t>(std::stoul(numBuffer));
+
+    srcIt++;  // Go to the char after space
+
+    return true;
+}
+
+bool getWord(std::string& dest, std::string::const_iterator& srcIt,
+             const std::string::const_iterator strEnd)
+{
+    do
+    {
+        if(srcIt == strEnd || !isalpha(*srcIt))
+            return false;
+
+        dest += *srcIt;
+    }
+    while(*++srcIt != ' ');
+
+    srcIt++;  // Go to the char after space
+
+    return true;
+}
