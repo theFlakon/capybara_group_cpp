@@ -2,8 +2,14 @@
 #define PIXEL_HPP
 
 #include <cstdint>
-#include <tuple>
 
-using Pixel = std::tuple<uint8_t, uint8_t, uint8_t>;
+class Pixel {
+private:
+    uint8_t red;
+    uint8_t green;
+    uint8_t blue;
+public:
+    void multiplyByK(double k);
+};
 
 #endif
