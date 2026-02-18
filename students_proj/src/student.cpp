@@ -1,59 +1,52 @@
 #include <numeric>
 #include <string>
 #include <vector>
+#include "student.hpp"
 
-class Student
+
+Student::Student(size_t id, std::vector<double> grades, std::string surname)
+    : _id(id), _grades(std::move(grades)), _surname(std::move(surname)) {
+
+}
+ 
+double Student::calcAvgGrade() const
 {
-private:
-    size_t _id;
-    std::vector<double> _grades;
-    std::string _surname;
+    double gradesSum = std::accumulate(_grades.begin(), _grades.end(), 0);
+    auto gradesCnt = static_cast<double>(_grades.size());
 
-public:
-    Student(size_t id, std::vector<double> grades, std::string surname)
-        : _id(id), _grades(std::move(grades)), _surname(std::move(surname))
-    {
-    }
+    return gradesSum / gradesCnt;
+}
 
-    double calcAvgGrade() const
-    {
-        double gradesSum = std::accumulate(_grades.begin(), _grades.end(), 0);
-        auto gradesCnt = static_cast<double>(_grades.size());
+// Getters
+size_t Student::getId() const
+{
+    return _id;
+}
 
-        return gradesSum / gradesCnt;
-    }
+const std::vector<double>& Student::getStudentsVec() const
+{
+    return _grades;
+}
 
-    // Getters
-    size_t getId() const
-    {
-        return _id;
-    }
+const std::string& Student::getSurname() const
+{
+    return _surname;
+}
+// End of getters
 
-    const std::vector<double>& getStudentsVec() const
-    {
-        return _grades;
-    }
+// Setters
+void Student::setId(size_t id)
+{
+    _id = id;
+}
 
-    const std::string& getSurname() const
-    {
-        return _surname;
-    }
-    // End of getters
+void Student::setGrades(std::vector<double> grades)
+{
+    _grades = std::move(grades);
+}
 
-    // Setters
-    void setId(size_t id)
-    {
-        _id = id;
-    }
-
-    void setGrades(std::vector<double> grades)
-    {
-        _grades = std::move(grades);
-    }
-
-    void setSurname(std::string surname)
-    {
-        _surname = std::move(surname);
-    }
-    // End of setters
-};
+void Student::setSurname(std::string surname)
+{
+    _surname = std::move(surname);
+}
+// End of setters

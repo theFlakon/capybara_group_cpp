@@ -1,5 +1,6 @@
-#include "group.cpp"
+#include "group.hpp"
 #include <fstream>
+#include "output.hpp"
 
 bool outputGroupInfo(Group group) {
     std::ofstream outputFile("group.txt");
