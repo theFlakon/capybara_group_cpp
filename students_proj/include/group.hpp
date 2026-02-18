@@ -1,10 +1,11 @@
 #ifndef GROUP_HPP
 #define GROUP_HPP
 
-#include <vector>
 #include "student.hpp"
+#include <vector>
 
-class Group {
+class Group
+{
 private:
     std::vector<Student> _studentsList;
 
@@ -15,5 +16,7 @@ public:
     double getAverageGroupGrade();
     double getAverageMaxStudentsGrade();
 };
+
+bool makeGroup(std::ifstream& inputFile, Group& rsGroup);
 
 #endif
