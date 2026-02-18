@@ -4,9 +4,9 @@
 
 int main() {
     std::ifstream input("data.txt");
-    Group new_group;
-    bool group = makeGroup(input, new_group);
+    Group newGroup{};
+    bool group = makeGroup(input, newGroup);
 
-    outputGroupInfo(new_group);
+    outputGroupInfo(newGroup);
     return 1;
 }
