@@ -12,6 +12,8 @@ private:
     std::vector<std::vector<Pixel>> _data;
     size_t _width;
     size_t _height;
+    void multSmallMatrix(const Filter& filterMatrix, size_t fstIdx,
+                         size_t secIdx);
 
 public:
     Image();
