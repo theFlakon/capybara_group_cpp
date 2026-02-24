@@ -20,9 +20,9 @@ void Image::multSmallMatrix(const Filter& filterMatrix, size_t fstIdx,
 
 void Image::applyFilter(const Filter& filterMatrix)
 {
-    for(size_t rowMatrixIdx = 0; rowMatrixIdx < _height / 3; rowMatrixIdx += 3)
+    for(size_t rowMatrixIdx = 0; rowMatrixIdx < _height; rowMatrixIdx += 3)
     {
-        for(size_t columnMatrixIdx = 0; columnMatrixIdx < _width / 3;
+        for(size_t columnMatrixIdx = 0; columnMatrixIdx < _width;
             columnMatrixIdx += 3)
         {
             multSmallMatrix(filterMatrix, rowMatrixIdx, columnMatrixIdx);
