@@ -2,19 +2,12 @@
 #define FILE_PARSER_HPP
 
 #include "image.hpp"
-
 #include <fstream>
 
-class fileParser
-{
-private:
-
-
+class fileParser{
+    
 public:
     void parse(std::ifstream& file, Image& image);
+};
 
-}
-
-
-
-#endif
+#endif // FILE_PARSES_HPP
