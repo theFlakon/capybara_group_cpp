@@ -13,6 +13,18 @@ public:
     Pixel(uint8_t r, uint8_t g, uint8_t b);
     void multiplyByCoeff(double coeff);
 
+    uint8_t getRed() {
+        return _red;
+    }
+
+    uint8_t getBlue() {
+        return _red;
+    }
+
+    uint8_t getGreen() {
+        return _red;
+    }
+
 };
 
 #endif
