@@ -18,7 +18,7 @@ void Image::multSmallMatrix(const Filter& filterMatrix, size_t fstIdx,
         size_t fstIdxCpy = fstIdx;
 
         for(size_t j = 0; j < 3; ++j, ++fstIdxCpy)
-            _data[fstIdxCpy][secIdx].multiplyByCoeff(filterMatrix[i][j]);
+            _data[fstIdxCpy][secIdx].multiplyByCoeff(filterMatrix[j][i]);
     }
 }
 
