@@ -1,13 +1,10 @@
 #include "file_parser.hpp"
 #include <opencv2/opencv.hpp>
 
-void FileParser::parse(std::ifstream& file, Image& image)
+static cv::Mat matFromPixels(const std::vector<std::vector<Pixel>>& pixels);
+
+void FileParser::parse(const std::string& path, Image& image)
 {
-    CHECK_COND(!file.is_open(), "File is not open");
-
-    std::string path{};
-    file >> path;  // path (ex: "img.png")
-
     CHECK_COND(path.empty(), "Empty file");
 
     // cv - using sth from cv-biblio; Mat = matrix; cv::image read - func
@@ -19,10 +16,6 @@ void FileParser::parse(std::ifstream& file, Image& image)
     size_t width = img.cols;
 
     std::vector<std::vector<Pixel>> imagePixels{};
-    /* [ Pixel Pixel Pixel ], [ Pixel Pixel Pixel ]  */
-    /* [ Pixel Pixel Pixel ], [ Pixel Pixel Pixel ]  */
-    /* [ Pixel Pixel Pixel ], [ Pixel Pixel Pixel ]  */
-    // creating:
     for(size_t idx = 0; idx < height; ++idx)
     {
         std::vector<Pixel> row{};
@@ -46,4 +39,36 @@ void FileParser::parse(std::ifstream& file, Image& image)
     }
 
     image = Image(width, height, imagePixels);
+}
+
+void FileParser::writePixelsToFile(const std::string& path, Image& image)
+{
+    if (path.empty()) throw std::runtime_error("Empty path");
+    cv::Mat m = matFromPixels(image.getData());
+    if (m.empty()) throw std::runtime_error("Empty image to write");
+    if (!cv::imwrite(path, m)) throw std::runtime_error("Failed to write image: " + path);
+}
+
+static cv::Mat matFromPixels(const std::vector<std::vector<Pixel>>& pixels)
+{
+    if (pixels.empty() || pixels[0].empty())
+        return cv::Mat();
+
+    int height = static_cast<int>(pixels.size());
+    int width  = static_cast<int>(pixels[0].size());
+    cv::Mat out(height, width, CV_8UC3);
+
+    for (int r = 0; r < height; ++r)
+    {
+        const auto &row = pixels[r];
+        for (int c = 0; c < width; ++c)
+        {
+            Pixel p(row[c]);
+            auto red = static_cast<unsigned char>(p.getRed());
+            auto green = static_cast<unsigned char>(p.getGreen());
+            auto blue = static_cast<unsigned char>(p.getBlue());
+            out.at<cv::Vec3b>(r, c) = cv::Vec3b(blue, green, red);
+        }
+    }
+    return out;
 }

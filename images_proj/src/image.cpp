@@ -6,6 +6,10 @@ Image::Image(size_t width, size_t height, std::vector<std::vector<Pixel>> data)
 {
 }
 
+std::vector<std::vector<Pixel>> Image::getData() {
+    return _data;
+}
+
 void Image::multSmallMatrix(const Filter& filterMatrix, size_t fstIdx,
                             size_t secIdx)
 {

@@ -42,7 +42,6 @@ endif()
 
 add_library(image_lib
     src/file_parser.cpp
-    src/filters.cpp
     src/pixel.cpp
     src/image.cpp
     src/history_manager.cpp

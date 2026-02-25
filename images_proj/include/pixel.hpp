@@ -18,11 +18,11 @@ public:
     }
 
     uint8_t getBlue() {
-        return _red;
+        return _blue;
     }
 
     uint8_t getGreen() {
-        return _red;
+        return _green;
     }
 
 };

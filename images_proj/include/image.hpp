@@ -19,6 +19,7 @@ public:
     Image();
     Image(size_t width, size_t height, std::vector<std::vector<Pixel>> data);
     void applyFilter(const Filter& filterMatrix);
+    std::vector<std::vector<Pixel>> getData();
 };
 
 #endif

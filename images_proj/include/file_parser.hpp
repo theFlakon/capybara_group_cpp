@@ -19,7 +19,9 @@
 class FileParser
 {
 public:
-    void parse(std::ifstream& file, Image& image);
+    void parse(const std::string& path, Image& image);
+    void output(const std::string& path, Image& image);
+    void writePixelsToFile(const std::string& path, Image& image);
 };
 
 #endif  // FILE_PARSES_HPP
