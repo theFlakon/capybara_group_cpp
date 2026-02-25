@@ -9,7 +9,6 @@ Image::Image(size_t width, size_t height, std::vector<std::vector<Pixel>> data)
 void Image::multSmallMatrix(const Filter& filterMatrix, size_t fstIdx,
                             size_t secIdx)
 {
-#pragma omp parallel for collapse(2)
     for(size_t i = 0; i < 3; ++i, ++secIdx)
     {
         size_t fstIdxCpy = fstIdx;
