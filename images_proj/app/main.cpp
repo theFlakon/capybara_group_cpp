@@ -8,7 +8,7 @@ int main() {
         Image image{};
         FileParser fileParser;
 
-        std::string path = "image.png";
+        std::string path = "/Users/kititnik/Documents/Projects/AsmHSE/capybara_group_cpp/images_proj/image.png";
         fileParser.parse(path, image);
         
         Filter halfFilter = {

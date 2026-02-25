@@ -15,9 +15,6 @@ Filter HistoryManager::invertFilter(const Filter& filter)
 
     double det = calcDet(filter);
 
-    //if(std::fabs(det) < 1e-12)
-        //throw std::runtime_error("Wrong filter");
-
     Filter inv(3, std::vector<double>(3));
 
     calcInv(inv, filter, det);
