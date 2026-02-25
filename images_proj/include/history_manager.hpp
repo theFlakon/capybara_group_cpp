@@ -8,6 +8,7 @@ class HistoryManager
 private:
     std::vector<Filter> _inversedFilters;
     Filter invertFilter(const Filter& filter);
+
 public:
     void addToHistory(const Filter& filter);
     void undoAction(Image& image);

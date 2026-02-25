@@ -3,11 +3,23 @@
 
 #include "image.hpp"
 #include <fstream>
+#include <iostream>
 
-class fileParser{
-    
+#define CHECK_COND(cond, msg)                                                  \
+    do                                                                         \
+    {                                                                          \
+        if(cond)                                                               \
+        {                                                                      \
+            std::cerr << msg << "\n";                                          \
+            return;                                                            \
+        }                                                                      \
+    }                                                                          \
+    while(0);
+
+class FileParser
+{
 public:
     void parse(std::ifstream& file, Image& image);
 };
 
-#endif // FILE_PARSES_HPP
+#endif  // FILE_PARSES_HPP
