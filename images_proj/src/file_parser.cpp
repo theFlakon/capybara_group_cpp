@@ -7,7 +7,7 @@ void FileParser::parse(const std::string& path, Image& image)
 {
     CHECK_COND(path.empty(), "Empty file");
 
-    // cv - using sth from cv-biblio; Mat = matrix; cv::image read - func
+    // cv - using sth from cv-biblio; Mat = matrix; cv::image read - func; BGR format
     cv::Mat img = cv::imread(path, cv::IMREAD_COLOR);
 
     CHECK_COND(img.empty(), "Image is empty or cannot be loaded");
@@ -56,18 +56,19 @@ static cv::Mat matFromPixels(const std::vector<std::vector<Pixel>>& pixels)
 
     int height = static_cast<int>(pixels.size());
     int width  = static_cast<int>(pixels[0].size());
+    // CV_8 unsigned char 3BGR
     cv::Mat out(height, width, CV_8UC3);
 
-    for (int r = 0; r < height; ++r)
+    for (int row = 0; row < height; ++row)
     {
-        const auto &row = pixels[r];
-        for (int c = 0; c < width; ++c)
+        const auto &rows = pixels[row];
+        for (int col = 0; col < width; ++col)
         {
-            Pixel p(row[c]);
+            Pixel p(row[col]);
             auto red = static_cast<unsigned char>(p.getRed());
             auto green = static_cast<unsigned char>(p.getGreen());
             auto blue = static_cast<unsigned char>(p.getBlue());
-            out.at<cv::Vec3b>(r, c) = cv::Vec3b(blue, green, red);
+            out.at<cv::Vec3b>(row, col) = cv::Vec3b(blue, green, red);
         }
     }
     return out;
