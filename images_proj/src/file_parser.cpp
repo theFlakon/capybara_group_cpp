@@ -64,7 +64,7 @@ static cv::Mat matFromPixels(const std::vector<std::vector<Pixel>>& pixels)
         const auto &rows = pixels[row];
         for (int col = 0; col < width; ++col)
         {
-            Pixel p(row[col]);
+            Pixel p(rows[col]);
             auto red = static_cast<unsigned char>(p.getRed());
             auto green = static_cast<unsigned char>(p.getGreen());
             auto blue = static_cast<unsigned char>(p.getBlue());
