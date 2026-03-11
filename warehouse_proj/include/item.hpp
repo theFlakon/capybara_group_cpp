@@ -5,8 +5,3 @@ public:
     T id;
     T value;
 };
-
-int main()
-{
-    return 0;
-}
