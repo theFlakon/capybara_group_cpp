@@ -6,6 +6,7 @@ private:
     T _value;
     
 public:
+    // constructor
     Item(T id, T value) {
         _id = id;
         _value = value;
