@@ -13,3 +13,4 @@ CMakeCache.txt
 CMakeFiles/
 
 .cache/
+.DS_Store
