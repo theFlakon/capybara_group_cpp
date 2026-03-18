@@ -10,8 +10,13 @@ private:
 
 public:
     // constructor
+<<<<<<< HEAD
     Item(T_ id, T_ value)
     {
+=======
+    Item() : _id(), _value() {}
+    Item(T_ id, T_ value) {
+>>>>>>> ea815a2fe4f937990eb5586c69040936dd2ac41a
         _id = id;
         _value = value;
     }
