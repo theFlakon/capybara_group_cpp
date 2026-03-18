@@ -1,2 +1,14 @@
 CompileFlags:
-  Add: [-std=c++20]
+    # Добавляем стандарт C++
+    - -std=c++20
+    # Рекурсивно (почти) добавляем папки include из всех подпроектов
+    - -Iimages_proj/include
+    - -Imath_func/include
+    - -Imatrix_task/include
+    - -Istr_program/include
+    - -Istudents_proj/include
+    - -Iwarehouse_proj/include
+  
+  # Это заставит clangd более агрессивно индексировать файлы
+  Index:
+    Background: Build

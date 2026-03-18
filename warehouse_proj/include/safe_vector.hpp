@@ -1,100 +1,100 @@
 #include <cstddef>
 
-template<typename T>
+template<typename T_>
 class SafeVector{
 private:
-    T *data;
-    size_t capacity;
-    size_t size;
+    T_ *_data;
+    size_t _capacity;
+    size_t _size;
 
     void grow();
 
 public:
     // constructor
     SafeVector(){
-        data = nullptr;
-        capacity = 0;
-        size = 0;
+        _data = nullptr;
+        _capacity = 0;
+        _size = 0;
     }
 
     // destructor
     ~SafeVector(){
-        delete[] data;
+        delete[] _data;
     }
 
-    T& get_Index(size_t index){
-        return data[index];
+    T_& getIndex(size_t index){
+        return _data[index];
     }
 
     size_t getSize(){
-        return size;
+        return _size;
     }
 
-    void push_back(const T &value);
+    void pushBack(const T_ &value);
 
     // when object exists
-    SafeVector& MoveAssignment(SafeVector<T> &oldElement);
+    SafeVector& moveAssignment(SafeVector<T_> &oldElement);
     // when object doesn't exists
-    SafeVector<T>(SafeVector<T> &oldElement);   // MoveConstructor
+    SafeVector<T_>(SafeVector<T_> &oldElement);   // MoveConstructor
 };
 
-template<typename T>
-void SafeVector<T>::grow(){
+template<typename T_>
+void SafeVector<T_>::grow(){
     // new capacity
     size_t newCapacity{};
 
-    if (capacity == 0) newCapacity = 1;
-    else newCapacity = capacity * 2;
+    if (_capacity == 0) newCapacity = 1;
+    else newCapacity = _capacity * 2;
 
-    T* newData = new T[newCapacity];
+    T_* newData = new T_[newCapacity];
 
     // copy elements
-    for (size_t idx = 0; idx < size; ++idx)
+    for (size_t idx = 0; idx < _size; ++idx)
     {
-        newData[idx] = data[idx];
+        newData[idx] = _data[idx];
     }
 
     // delete old arguments
-    delete[] data;
-    data = newData;
-    capacity = newCapacity; 
+    delete[] _data;
+    _data = newData;
+    _capacity = newCapacity; 
 }
 
-template<typename T>
-void SafeVector<T>::push_back(const T& value){
+template<typename T_>
+void SafeVector<T_>::pushBack(const T_& value){
     // probably grow
-    if (size == capacity)
+    if (_size == _capacity)
     {
         grow();
     }
 
-    data[size] = value;
-    size++;
+    _data[_size] = value;
+    _size++;
 }
 
-template <typename T>
-SafeVector<T>& SafeVector<T>::MoveAssignment(SafeVector<T> &oldElement){
-    delete[] data;
+template <typename T_>
+SafeVector<T_>& SafeVector<T_>::moveAssignment(SafeVector<T_> &oldElement){
+    delete[] _data;
 
-    data = oldElement.data;
-    size = oldElement.size;
-    capacity = oldElement.capacity;
+    _data = oldElement._data;
+    _size = oldElement._size;
+    _capacity = oldElement._capacity;
 
-    oldElement.data = nullptr;
-    oldElement.size = 0;
-    oldElement.capacity = 0;
+    oldElement._data = nullptr;
+    oldElement._size = 0;
+    oldElement._capacity = 0;
 
     return *this;
 }
 
-template<typename T>
-SafeVector<T>::SafeVector(SafeVector<T> &oldElement){
+template<typename T_>
+SafeVector<T_>::SafeVector(SafeVector<T_> &oldElement){
 
-    data = oldElement.data;
-    size = oldElement.size;
-    capacity = oldElement.capacity;
+    _data = oldElement._data;
+    _size = oldElement._size;
+    _capacity = oldElement._capacity;
 
-    oldElement.data = nullptr;
-    oldElement.size = 0;
-    oldElement.capacity = 0;
+    oldElement._data = nullptr;
+    oldElement._size = 0;
+    oldElement._capacity = 0;
 }
