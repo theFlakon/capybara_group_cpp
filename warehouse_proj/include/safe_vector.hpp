@@ -1,3 +1,6 @@
+#ifndef SAFE_VECTOR_HPP
+#define SAFE_VECTOR_HPP
+
 #include <cstddef>
 
 template <typename T_> class SafeVector
@@ -107,3 +110,5 @@ SafeVector<T_>& SafeVector<T_>::moveAssignment(SafeVector<T_>& oldElement)
 
     return *this;
 }
+
+#endif

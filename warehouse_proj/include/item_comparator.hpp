@@ -2,6 +2,7 @@
 #define ITEM_COMPARATOR_HPP
 
 #include "item.hpp"
+#include <tuple>
 
 template <typename T_> struct ItemComparator
 {

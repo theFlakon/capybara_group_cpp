@@ -16,41 +16,9 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 
-# find_package(OpenCV QUIET)
+add_executable(program app/main.cpp)
 
-# if(NOT OpenCV_FOUND)
-#     message(STATUS "OpenCV not found, download")
-#     include(FetchContent)
-    
-#     FetchContent_Declare(
-#         opencv
-#         GIT_REPOSITORY https://github.com/opencv/opencv.git
-#         GIT_TAG 4.8.0
-#     )
-    
-#     set(OPENCV_ENABLE_NONFREE OFF CACHE BOOL "" FORCE)
-#     set(BUILD_opencv_apps OFF CACHE BOOL "" FORCE)
-#     set(BUILD_opencv_java OFF CACHE BOOL "" FORCE)
-#     set(BUILD_opencv_python OFF CACHE BOOL "" FORCE)
-#     set(BUILD_opencv_js OFF CACHE BOOL "" FORCE)
-#     set(BUILD_TESTS OFF CACHE BOOL "" FORCE)
-#     set(BUILD_PERF_TESTS OFF CACHE BOOL "" FORCE)
-#     set(BUILD_EXAMPLES OFF CACHE BOOL "" FORCE)
-    
-#     FetchContent_MakeAvailable(opencv)
-# endif()
-
-# add_library(image_lib
-#     src/file_parser.cpp
-#     src/pixel.cpp
-#     src/image.cpp
-#     src/history_manager.cpp
-# )
-
-add_executable(warehouse_proj app/main.cpp)
-
-target_include_directories(warehouse_proj PRIVATE include)
-
+target_include_directories(program PRIVATE include)
 
 if (BUILD_TESTS)
     include(FetchContent)
@@ -66,7 +34,7 @@ if (BUILD_TESTS)
     add_executable(tests 
         tests/tests.cpp
     )
-
-    target_link_libraries(tests PRIVATE image_lib Catch2::Catch2WithMain)
+    target_include_directories(tests PRIVATE include)
+    target_link_libraries(tests PRIVATE Catch2::Catch2WithMain)
     add_test(NAME Tests COMMAND $<TARGET_FILE:tests>) 
 endif()
