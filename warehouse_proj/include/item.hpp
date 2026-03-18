@@ -24,9 +24,3 @@ public:
         _value = value;
     }
 };
-
-
-int main()
-{
-    Item item{324, 423849};
-}
