@@ -6,14 +6,14 @@ int main() {
 
     SafeVector<Item<int>> items;
 
-    items.push_back(Item<int>(3, 100));
-    items.push_back(Item<int>(1, 50));
-    items.push_back(Item<int>(2, 100));
-    items.push_back(Item<int>(4, 25));
+    items.pushBack(Item<int>(3, 100));
+    items.pushBack(Item<int>(1, 50));
+    items.pushBack(Item<int>(2, 100));
+    items.pushBack(Item<int>(4, 25));
 
     for (size_t idx = 0; idx < items.getSize(); idx++) {
-        std::cout << "id = " << items.get_Index(idx).getId()
-                  << ", value = " << items.get_Index(idx).getValue()
+        std::cout << "id = " << items.getIndex(idx).getId()
+                  << ", value = " << items.getIndex(idx).getValue()
                   << '\n';
     }
 

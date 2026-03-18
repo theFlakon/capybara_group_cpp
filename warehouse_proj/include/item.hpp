@@ -7,6 +7,7 @@ private:
     
 public:
     // constructor
+    Item() : _id(), _value() {}
     Item(T_ id, T_ value) {
         _id = id;
         _value = value;
