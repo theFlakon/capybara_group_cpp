@@ -4,22 +4,24 @@
 #include "document.hpp"
 #include <string>
 #include <cstddef>
+#include <sstream>
 
 class TextDocument : public Document{
 private:
-    std::string path;
     std::string text;
     bool isOpen;
 
 public:
-    // comstructor
-    TextDocument(const std::string &path);
+    // constructor
+    TextDocument(const std::string &text);
 
     void open() override;    
     void save() override;
     std::string extractContent() override;
     size_t getWordCount() override;
     std::string getFormatName() override;
+
+    // destructor
     ~TextDocument();
 };
 

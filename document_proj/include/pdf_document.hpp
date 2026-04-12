@@ -4,6 +4,7 @@
 #include "document.hpp"
 #include <string>
 #include <cstddef>
+#include <iostream>
 
 class PDFDocument: public Document {
 private:
