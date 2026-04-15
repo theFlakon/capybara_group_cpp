@@ -1,17 +1,51 @@
-.vscode
-
-# build directories
+# =====================
+# Build directories
+# =====================
 build/
 */build/
 
-# fetched dependencies
-external/
-*/external/
-
-# CMake stuff
+# =====================
+# CMake
+# =====================
 CMakeCache.txt
 CMakeFiles/
+cmake_install.cmake
+Makefile
 
-.cache/
-.DS_Store
+# =====================
+# Compile commands (локальный файл)
+# =====================
 compile_commands.json
+
+# =====================
+# VS Code
+# =====================
+.vscode/
+
+# =====================
+# Clang / tooling
+# =====================
+.clangd
+.clang-format
+.clang-tidy
+
+# =====================
+# OS files
+# =====================
+.DS_Store
+*.swp
+
+# =====================
+# Binaries
+# =====================
+*.o
+*.out
+*.exe
+*.a
+
+# =====================
+# Archives / мусор
+# =====================
+*.zip
+*.tar
+*.gz
