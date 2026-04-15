@@ -49,3 +49,6 @@ compile_commands.json
 *.zip
 *.tar
 *.gz
+
+.cache/
+bin/

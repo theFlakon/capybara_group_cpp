@@ -1,9 +1,11 @@
 #ifndef SPREADSHEET_DOCUMENT_HPP
 #define SPREADSHEET_DOCUMENT_HPP
+
 #include "document.hpp"
 #include <fstream>
 #include <sstream>
 #include <iostream>
+
 class SpreadsheetDocument: public Document {
 private:
     std::string _filename;

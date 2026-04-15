@@ -10,10 +10,10 @@ int main() {
     std::vector<std::unique_ptr<Document>> docs;
 
     docs.push_back(std::make_unique<TextDocument>(
-        "Hello world. This is a simple text document."));
+        "test1.txt"));
 
     docs.push_back(std::make_unique<TextDocument>(
-        "Another text file"));
+        "test2.txt"));
 
     docs.push_back(std::make_unique<PDFDocument>("report.pdf"));
 

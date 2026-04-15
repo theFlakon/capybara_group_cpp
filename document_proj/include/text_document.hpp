@@ -5,15 +5,17 @@
 #include <string>
 #include <cstddef>
 #include <sstream>
+#include <fstream>
 
 class TextDocument : public Document{
 private:
+    std::string path;
     std::string text;
     bool isOpen;
 
 public:
     // constructor
-    TextDocument(const std::string &text);
+    TextDocument(const std::string &path);
 
     void open() override;    
     void save() override;

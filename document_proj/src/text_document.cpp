@@ -1,8 +1,22 @@
 #include "text_document.hpp"
                                             // this->text = text, this->isOpen = false
-TextDocument::TextDocument(const std::string &text) : text(text), isOpen(false){}  
+TextDocument::TextDocument(const std::string &path) : path(path), isOpen(false){}  
 
 void TextDocument::open(){
+    std::ifstream file(path);
+    
+    if (!file.is_open()){
+        return;
+    }
+
+    text.clear();
+    std::string line;
+
+    while (std::getline(file, line)) {
+        text += line;
+        text += '\n';
+    }
+
     isOpen = true;
 }
 
