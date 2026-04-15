@@ -1,1 +1,32 @@
-build/compile_commands.json
+[
+{
+  "directory": "/Users/kititnik/Documents/Projects/AsmHSE/capybara_group_cpp/document_proj/build",
+  "command": "/usr/bin/c++  -I/Users/kititnik/Documents/Projects/AsmHSE/capybara_group_cpp/document_proj/include -g -O0 -Werror=return-type -std=gnu++20 -arch arm64 -o CMakeFiles/docs_lib.dir/src/document_processor.cpp.o -c /Users/kititnik/Documents/Projects/AsmHSE/capybara_group_cpp/document_proj/src/document_processor.cpp",
+  "file": "/Users/kititnik/Documents/Projects/AsmHSE/capybara_group_cpp/document_proj/src/document_processor.cpp",
+  "output": "CMakeFiles/docs_lib.dir/src/document_processor.cpp.o"
+},
+{
+  "directory": "/Users/kititnik/Documents/Projects/AsmHSE/capybara_group_cpp/document_proj/build",
+  "command": "/usr/bin/c++  -I/Users/kititnik/Documents/Projects/AsmHSE/capybara_group_cpp/document_proj/include -g -O0 -Werror=return-type -std=gnu++20 -arch arm64 -o CMakeFiles/docs_lib.dir/src/pdf_document.cpp.o -c /Users/kititnik/Documents/Projects/AsmHSE/capybara_group_cpp/document_proj/src/pdf_document.cpp",
+  "file": "/Users/kititnik/Documents/Projects/AsmHSE/capybara_group_cpp/document_proj/src/pdf_document.cpp",
+  "output": "CMakeFiles/docs_lib.dir/src/pdf_document.cpp.o"
+},
+{
+  "directory": "/Users/kititnik/Documents/Projects/AsmHSE/capybara_group_cpp/document_proj/build",
+  "command": "/usr/bin/c++  -I/Users/kititnik/Documents/Projects/AsmHSE/capybara_group_cpp/document_proj/include -g -O0 -Werror=return-type -std=gnu++20 -arch arm64 -o CMakeFiles/docs_lib.dir/src/spreadsheet_document.cpp.o -c /Users/kititnik/Documents/Projects/AsmHSE/capybara_group_cpp/document_proj/src/spreadsheet_document.cpp",
+  "file": "/Users/kititnik/Documents/Projects/AsmHSE/capybara_group_cpp/document_proj/src/spreadsheet_document.cpp",
+  "output": "CMakeFiles/docs_lib.dir/src/spreadsheet_document.cpp.o"
+},
+{
+  "directory": "/Users/kititnik/Documents/Projects/AsmHSE/capybara_group_cpp/document_proj/build",
+  "command": "/usr/bin/c++  -I/Users/kititnik/Documents/Projects/AsmHSE/capybara_group_cpp/document_proj/include -g -O0 -Werror=return-type -std=gnu++20 -arch arm64 -o CMakeFiles/docs_lib.dir/src/text_document.cpp.o -c /Users/kititnik/Documents/Projects/AsmHSE/capybara_group_cpp/document_proj/src/text_document.cpp",
+  "file": "/Users/kititnik/Documents/Projects/AsmHSE/capybara_group_cpp/document_proj/src/text_document.cpp",
+  "output": "CMakeFiles/docs_lib.dir/src/text_document.cpp.o"
+},
+{
+  "directory": "/Users/kititnik/Documents/Projects/AsmHSE/capybara_group_cpp/document_proj/build",
+  "command": "/usr/bin/c++  -I/Users/kititnik/Documents/Projects/AsmHSE/capybara_group_cpp/document_proj/include -g -O0 -Werror=return-type -std=gnu++20 -arch arm64 -o CMakeFiles/program.dir/app/main.cpp.o -c /Users/kititnik/Documents/Projects/AsmHSE/capybara_group_cpp/document_proj/app/main.cpp",
+  "file": "/Users/kititnik/Documents/Projects/AsmHSE/capybara_group_cpp/document_proj/app/main.cpp",
+  "output": "CMakeFiles/program.dir/app/main.cpp.o"
+}
+]

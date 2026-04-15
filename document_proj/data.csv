@@ -1,0 +1,6 @@
+Product,Category,Units Sold,Unit Price,Region
+Widget A,Hardware,320,49.99,North
+Widget B,Hardware,210,79.99,South
+Service Pro,Software,85,199.00,North
+Service Lite,Software,430,49.00,East
+Cable Pack,Hardware,900,9.99,West

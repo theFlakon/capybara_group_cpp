@@ -16,9 +16,21 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 
-add_executable(program app/main.cpp)
+add_library(docs_lib
+    src/document_processor.cpp
+    src/pdf_document.cpp
+    src/spreadsheet_document.cpp
+    src/text_document.cpp
+)
 
-target_include_directories(program PRIVATE include)
+target_include_directories(docs_lib
+    PUBLIC include
+)
+
+add_executable(program 
+    app/main.cpp)
+
+target_link_libraries(program PRIVATE docs_lib)
 
 if (BUILD_TESTS)
     include(FetchContent)
@@ -35,6 +47,6 @@ if (BUILD_TESTS)
         tests/tests.cpp
     )
     target_include_directories(tests PRIVATE include)
-    target_link_libraries(tests PRIVATE Catch2::Catch2WithMain)
+    target_link_libraries(tests PRIVATE Catch2::Catch2WithMain docs_lib)
     add_test(NAME Tests COMMAND $<TARGET_FILE:tests>) 
 endif()

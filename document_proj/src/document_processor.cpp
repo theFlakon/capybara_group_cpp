@@ -8,7 +8,7 @@ void DocumentProcessor::processAll(
     for(size_t idx = 0; idx < docsVec.size(); ++idx)
     {
         auto& document = docsVec[idx];
-
+        document->open();
         DocInfo currDocInfo{document->getFormatName(),
                             document->extractContent(),
                             document->getWordCount()};
