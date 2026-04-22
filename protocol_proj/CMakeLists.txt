@@ -47,6 +47,6 @@ if (BUILD_TESTS)
         tests/tests.cpp
     )
     target_include_directories(tests PRIVATE include)
-    target_link_libraries(tests PRIVATE Catch2::Catch2WithMain docs_lib)
+    target_link_libraries(tests PRIVATE Catch2::Catch2WithMain protocol_lib)
     add_test(NAME Tests COMMAND $<TARGET_FILE:tests>) 
 endif()
