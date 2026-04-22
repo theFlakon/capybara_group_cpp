@@ -1,3 +1,5 @@
+#pragma once
+
 #include <cstdint>
 #include <string>
 #include <variant>
@@ -18,7 +20,7 @@ class Message
 private:
     std::string _version;
     std::string _type;  // E.g.: text, binary
-    std::variant<TextPayload, BinaryPayload> _payload;
+    std::variant<TextPayload, BinaryPayload> _payload;  // saves OR text OR binary data
 
 public:
     Message(std::string version, std::string type,

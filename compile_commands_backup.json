@@ -1,0 +1,14 @@
+[
+{
+  "directory": "/home/harun00000/Рабочий стол/projects/asmProjects/capybara_group_cpp/document_proj/build",
+  "command": "/usr/bin/c++  -I\"/home/harun00000/Рабочий стол/projects/asmProjects/capybara_group_cpp/document_proj/include\" -g -O0 -Werror=return-type -std=gnu++17 -o CMakeFiles/docs_lib.dir/src/text_document.cpp.o -c \"/home/harun00000/Рабочий стол/projects/asmProjects/capybara_group_cpp/document_proj/src/text_document.cpp\"",
+  "file": "/home/harun00000/Рабочий стол/projects/asmProjects/capybara_group_cpp/document_proj/src/text_document.cpp",
+  "output": "CMakeFiles/docs_lib.dir/src/text_document.cpp.o"
+},
+{
+  "directory": "/home/harun00000/Рабочий стол/projects/asmProjects/capybara_group_cpp/document_proj/build",
+  "command": "/usr/bin/c++  -I\"/home/harun00000/Рабочий стол/projects/asmProjects/capybara_group_cpp/document_proj/include\" -g -O0 -Werror=return-type -std=gnu++17 -o CMakeFiles/program.dir/app/main.cpp.o -c \"/home/harun00000/Рабочий стол/projects/asmProjects/capybara_group_cpp/document_proj/app/main.cpp\"",
+  "file": "/home/harun00000/Рабочий стол/projects/asmProjects/capybara_group_cpp/document_proj/app/main.cpp",
+  "output": "CMakeFiles/program.dir/app/main.cpp.o"
+}
+]
