@@ -32,7 +32,7 @@ std::expected<Message, ParseError> DefaultParser::parse(std::string_view rawData
         }
         BinaryPayload bp;
         for (char c : payloadSv)
-            bp.data.push_back(static_cast<uint8_t>(c));
+            bp.data.push_back(c-'0');
         return Message(std::move(version), std::move(type), std::move(bp));
     }
 
