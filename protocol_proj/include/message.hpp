@@ -28,7 +28,7 @@ public:
 
     const std::string& getVersion() const;
     const std::string& getType() const;
-    std::variant<TextPayload, BinaryPayload>& getPayload() const;
+    const std::variant<TextPayload, BinaryPayload>& getPayload() const;
 
     std::string transformStrBin() const;
 };
