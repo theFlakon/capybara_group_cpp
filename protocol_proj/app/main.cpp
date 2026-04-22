@@ -1,7 +1,6 @@
 #include "connection.hpp"
 #include "message_queue.hpp"
 #include "protocol_handler.hpp"
-// мб работает мб нет без parse не скажешь
 #include <iostream>
 #include <variant>
 
@@ -20,7 +19,7 @@ int main()
                 std::string rawData = conn.receive();
                 std::cout << "Raw data: " << rawData << '\n';
 
-                auto result = parser.parse(rawData);
+                auto result = parser.handle(rawData);
 
                 if (result) {
                     Message msg = *result;
