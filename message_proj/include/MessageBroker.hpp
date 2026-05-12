@@ -5,6 +5,8 @@
 
 #include <deque>
 #include <memory>
+#include <cstddef>
+#include <iostream>
 
 class MessageBroker {
 private:
@@ -16,7 +18,7 @@ public:
 
     void addMessage(const std::shared_ptr<Message>& message);
 
-    std::size_t size() const;
+    size_t size() const;
 
     void printSerialized() const;
 
