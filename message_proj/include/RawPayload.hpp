@@ -1,26 +1,41 @@
-#pragma once
+#ifndef RAWPAYLOAD_HPP
+#define RAWPAYLOAD_HPP
 
-#include <cstddef>
+#include <cstring>
 
-class RawPayload {
+class RawPayload
+{
 private:
-    char* buffer;
-    std::size_t capacity;
-    bool owned;
+    char* _buffer;
+    size_t _capacity;
+    bool _owned;
 
 public:
-    explicit RawPayload(std::size_t capacity);
+    explicit RawPayload(size_t cap);
 
     ~RawPayload();
 
-    // Rule of 5
     RawPayload(const RawPayload& other);
+
     RawPayload& operator=(const RawPayload& other);
 
     RawPayload(RawPayload&& other) noexcept;
+
     RawPayload& operator=(RawPayload&& other) noexcept;
 
-    char* getBuffer() const;
+    void setBuffer(char* buffer);
 
-    std::size_t getCapacity() const;
+    void setCapacity(size_t capacity);
+
+    void setOwned(bool owned);
+
+    char* getBuffer();
+
+    const char* getBuffer() const;
+
+    size_t getCapacity() const;
+
+    bool getOwned() const;
 };
+
+#endif
