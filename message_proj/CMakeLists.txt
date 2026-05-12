@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.23)
+cmake_minimum_required(VERSION 3.22)
 project(message_proj)
 
 if (NOT CMAKE_BUILD_TYPE)           
@@ -28,7 +28,7 @@ target_include_directories(message_lib
 )
 
 add_executable(program 
-    src/main.cpp
+    app/main.cpp
 )
 
 target_link_libraries(program PRIVATE message_lib)
