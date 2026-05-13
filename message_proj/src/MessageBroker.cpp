@@ -29,7 +29,7 @@ void MessageBroker::printSerialized() const{
 long MessageBroker::frontRefCount() const {
     if (_queue.empty())
         throw std::invalid_argument("Queue is empty");
-    // queue.front() is a reference — no extra shared_ptr is constructed
+        
     return _queue.front().use_count();
 }
 
