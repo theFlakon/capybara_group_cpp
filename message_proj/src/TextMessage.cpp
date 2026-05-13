@@ -1,6 +1,9 @@
 #include "TextMessage.hpp"
+#include <iostream>
 
-TextMessage::TextMessage(const std::string& text) : _text(text) {}
+TextMessage::TextMessage(const std::string& text) : _text(text) {
+    std::cout << "[LOG] TextMessage created\n";
+}
 
 std::string TextMessage::serialize() const {
     return _text;

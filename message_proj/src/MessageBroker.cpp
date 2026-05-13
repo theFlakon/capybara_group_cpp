@@ -1,6 +1,7 @@
 #include "MessageBroker.hpp"
+#include <iostream>
 
-MessageBroker::MessageBroker(std::size_t cacheSize) : cache(cacheSize) {}
+MessageBroker::MessageBroker(std::size_t cacheSize) : _cache(cacheSize) {}
 
 void MessageBroker::addMessage(const std::shared_ptr<Message>& message){
     if (!message)
@@ -8,25 +9,35 @@ void MessageBroker::addMessage(const std::shared_ptr<Message>& message){
         throw std::invalid_argument("Message is empty");
     }
 
-    queue.push_back(message);
+    _queue.push_back(message);
 }
 
 size_t MessageBroker::size() const{
-    return queue.size();
+    return _queue.size();
 }
 
 void MessageBroker::printSerialized() const{
-    for (const auto& msg : queue)
-    {
-        std::cout << msg->serialize() << '\n';
+    for (const auto& msg : _queue) {
+        if (msg->type() == "TEXT") {
+            std::cout << "Serialized TextMessage: \"" << msg->serialize() << "\"\n";
+        } else {
+            std::cout << "Serialized BinaryMessage: " << msg->serialize() << "\n";
+        }
     }
 }
 
+long MessageBroker::frontRefCount() const {
+    if (_queue.empty())
+        throw std::invalid_argument("Queue is empty");
+    // queue.front() is a reference — no extra shared_ptr is constructed
+    return _queue.front().use_count();
+}
+
 std::shared_ptr<Message> MessageBroker::front() const{
-    if (queue.empty())
+    if (_queue.empty())
     {
         throw std::invalid_argument("Queue is empty");
     }
 
-    return queue.front();
+    return _queue.front();
 }

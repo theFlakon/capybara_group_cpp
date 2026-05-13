@@ -6,12 +6,11 @@
 #include <deque>
 #include <memory>
 #include <cstddef>
-#include <iostream>
 
 class MessageBroker {
 private:
-    RawPayload cache;
-    std::deque<std::shared_ptr<Message>> queue;
+    RawPayload _cache;
+    std::deque<std::shared_ptr<Message>> _queue;
 
 public:
     explicit MessageBroker(std::size_t cacheSize);
@@ -21,6 +20,8 @@ public:
     size_t size() const;
 
     void printSerialized() const;
+
+    long frontRefCount() const;
 
     std::shared_ptr<Message> front() const;
 };
