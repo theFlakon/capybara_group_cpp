@@ -4,9 +4,12 @@
 #include <utility>
 
 RawPayload::RawPayload(size_t cap)
-    : _buffer(new char[cap]), _capacity(cap), _owned(true) 
+    : _buffer(new char[cap]), _capacity(cap), _owned(true)
 {
-        std::cout << "[LOG] RawPayload alloc: " << cap << " bytes\n";
+    if(getBuffer() == nullptr)
+        throw std::runtime_error("Failed to allocate memory");
+
+    std::cout << "[LOG] RawPayload alloc: " << cap << " bytes\n";
 };
 
 RawPayload::~RawPayload()
@@ -66,15 +69,15 @@ RawPayload::RawPayload(RawPayload&& other) noexcept
 
 RawPayload& RawPayload::operator=(RawPayload&& other) noexcept
 {
-    if (this == &other)
+    if(this == &other)
         return *this;
 
-    if (_owned && _buffer != nullptr)
+    if(_owned && _buffer != nullptr)
         delete[] _buffer;
 
-    _buffer   = std::exchange(other._buffer, nullptr);
+    _buffer = std::exchange(other._buffer, nullptr);
     _capacity = std::exchange(other._capacity, 0);
-    _owned    = std::exchange(other._owned, false);
+    _owned = std::exchange(other._owned, false);
 
     return *this;
 }
