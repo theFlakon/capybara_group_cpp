@@ -11,15 +11,15 @@ private:
 public:
     explicit TextMessage(const std::string& text);
   
-    ~TextMessage() override = default; // Destructor
+    ~TextMessage() override = default; // destructor
 
-    TextMessage(const TextMessage& other) = default; // Copy constructor
+    TextMessage(const TextMessage& other) = default; // copy constructor
   
-    TextMessage& operator=(const TextMessage& other) = default; // Copy assignment operator
+    TextMessage& operator=(const TextMessage& other) = default; // copy assignment operator
    
-    TextMessage(TextMessage&& other) noexcept = default; // Move constructor
+    TextMessage(TextMessage&& other) noexcept = default; // move constructor
    
-    TextMessage& operator=(TextMessage&& other) noexcept = default; // Move assignment operator
+    TextMessage& operator=(TextMessage&& other) noexcept = default; // move assignment operator
 
     void setText(const std::string& text);
     const std::string& getText() const;
