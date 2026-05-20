@@ -13,6 +13,21 @@ private:
 public:
     explicit BinaryMessage(const std::vector<uint8_t>& data);
 
+   
+    ~BinaryMessage() override = default; // destructor
+
+    
+    BinaryMessage(const BinaryMessage& other) = default; // copy constructor
+
+    
+    BinaryMessage& operator=(const BinaryMessage& other) = default; // copy assignment operator
+
+   
+    BinaryMessage(BinaryMessage&& other) noexcept = default; // move constructor
+
+  
+    BinaryMessage& operator=(BinaryMessage&& other) noexcept = default; // move assignment operator
+
     const std::vector<uint8_t>& getData() const;
     void setData(const std::vector<uint8_t>& data);
     
