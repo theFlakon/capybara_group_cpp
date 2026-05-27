@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.22)
-project(vars_router)
+project(types_router)
 
 if (NOT CMAKE_BUILD_TYPE)           
     set(CMAKE_BUILD_TYPE Debug) 
@@ -16,18 +16,17 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 
-add_library(message_lib
-)
+add_library(types_router_lib INTERFACE)
 
-target_include_directories(message_lib
-    PUBLIC include
+target_include_directories(types_router_lib
+    INTERFACE include
 )
 
 add_executable(program 
     app/main.cpp
 )
 
-target_link_libraries(program PRIVATE message_lib)
+target_link_libraries(program PRIVATE types_router_lib)
 
 if (BUILD_TESTS)
     include(FetchContent)
@@ -49,7 +48,7 @@ if (BUILD_TESTS)
     target_link_libraries(tests 
         PRIVATE 
         Catch2::Catch2WithMain 
-        message_lib
+        types_router_lib
     )
 
     add_test(NAME Tests COMMAND $<TARGET_FILE:tests>) 
