@@ -2,6 +2,7 @@
 #define TYPES_ROUTER_HPP
 
 #include <cstddef>
+#include <string>
 
 // Forward declarations of the class and struct templates
 template <typename T_> class TypesRouter;
@@ -23,7 +24,7 @@ template <typename T_> class TypesRouter
 {
 private:
     std::size_t _typeIdx{};
-    const char* _typeName{};
+    std::string _typeName{};
     T_ _value{};
 
 public:
@@ -36,9 +37,9 @@ public:
         _typeIdx = typeIdx;
     }
 
-    void setTypeName(const char* typeName)
+    void setTypeName(std::string typeName)
     {
-        _typeName = typeName;
+        _typeName = std::move(typeName);
     }
 
     void setValue(T_ value)
@@ -51,7 +52,7 @@ public:
         return _typeIdx;
     }
 
-    const char* getTypeName() const
+    const std::string& getTypeName() const
     {
         return _typeName;
     }

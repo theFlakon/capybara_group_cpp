@@ -20,9 +20,19 @@ constexpr size_t typeIdV<std::string> = 3;
 template <typename T>
 constexpr size_t typeIdV<std::vector<T>> = 4;
 
-// function
 template <typename T>
 constexpr size_t typeId()
 {
     return typeIdV<T>;
 }
+
+// type name
+template <typename T>
+constexpr const char* typeName() { return "unknown"; }
+
+template <> 
+constexpr const char* typeName<int>() { return "int"; }
+template <> 
+constexpr const char* typeName<double>() { return "double"; }
+template <> 
+constexpr const char* typeName<std::string>() { return "std::string"; }

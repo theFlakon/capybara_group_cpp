@@ -21,7 +21,7 @@ TEST_CASE("int: multiplied by 10", "[TypesRouter]") {
 
 TEST_CASE("double: rounded to 1 decimal", "[TypesRouter]") {
     TypesRouter<double> obj(3.14159);
-    CHECK(obj.getValue() == Catch::Approx(3.1));
+    CHECK(obj.getValue() == 3.1);
     CHECK(obj.getTypeIdx() == 2);
 }
 
