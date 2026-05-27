@@ -43,21 +43,18 @@ void route(const T& value)
                   << " | Processed: upper = " << obj.getValue()
                   << '\n';
     }
-    else if constexpr (IsVector<T>::value)
+   else if constexpr (IsVector<T>::value)
     {
+        const auto result = obj.getValue();
+
         std::cout << "[" << obj.getTypeName() << "] "
                 << "ID: " << obj.getTypeIdx()
-                << " | Size: " << sizeof(T);
+                << " | Size: " << sizeof(T)
+                << " | Processed: sum = ";
 
-        if constexpr (std::is_same_v<typename T::value_type, int>)
+        if (!result.empty())
         {
-            const auto result = obj.getValue();
-
-            std::cout << " | Processed: Sum = " << result[0];
-        }
-        else
-        {
-            std::cout << " | Processed: vector size = " << obj.getValue().size();
+            std::cout << result[0];
         }
 
         std::cout << '\n';

@@ -45,6 +45,21 @@ public:
     {
         _value = value;
     }
+
+    std::size_t getTypeIdx() const // 
+    {
+        return _typeIdx;
+    }
+
+    const char* getTypeName() const
+    {
+        return _typeName;
+    }
+
+    T_ getValue() const
+    {
+        return _value;
+    }
 };
 
 // Definition of the constructor for the generic TypesRouter template

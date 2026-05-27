@@ -12,18 +12,10 @@ struct TypeImplement<std::vector<T>> {
 
     static void process(TypesRouter<std::vector<T>>& obj, std::vector<T> value)
     {
+        T sum = std::accumulate(value.begin(), value.end(), T{});
+
         obj.setTypeIdx(ID);
         obj.setTypeName(NAME);
-
-        if constexpr (std::is_same_v<T, int>)
-        {
-            int sum = std::accumulate(value.begin(), value.end(), 0);
-
-            obj.setValue(std::vector<int>{sum});
-        }
-        else
-        {
-            obj.setValue(value);
-        }
+        obj.setValue({sum});
     }
 };
