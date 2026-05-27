@@ -2,6 +2,11 @@
 
 #include "types_router.hpp"
 
+
+#include "type_implement_double.hpp"
+#include "type_implement_string.hpp"
+#include "type_implement_vector.hpp"
+
 #include <iostream>
 #include <numeric>
 #include <string>
